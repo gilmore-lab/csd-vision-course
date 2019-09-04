@@ -22,3 +22,16 @@
 .reveal section blockquote {
   font-size: 1.10em;
 }
+
+.reveal section refs p {
+  font-size: 0.40em;
+}
+
+#refs {
+  font-size: 0.40em;
+}
+
+.references {
+   font-size: 0.40em;
+   text-align: justify ;
+}
