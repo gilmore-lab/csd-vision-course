@@ -1,5 +1,5 @@
 ---
-title: "Vision: How works, how it develops, and why you should care"
+title: "Vision: How it works, how it develops, and why you should care"
 author: "Rick O. Gilmore"
 date: "`r Sys.time()`"
 bibliography: refs.bib
