@@ -93,6 +93,14 @@ knitr::opts_chunk$set(echo = FALSE)
 | Magnetoreception | Electromagnetic radiation patterns   |
 | Kinesthesia      | Position, velocity, acceleration of limbs, body |
 
+## Plenoptic function
+
+---
+
+```{r, out.width="500px", fig.cap="(Adelson & Bergen, 1991)"}
+knitr::include_graphics("img/plenoptic-function-adelson-1991.jpg")
+```
+
 ## Light
 
 - Electromagnetic (EM) radiation
