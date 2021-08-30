@@ -1,673 +1,393 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="author" content="Rick O. Gilmore" />
   <title>Vision: How it works, how it develops, and why you should care</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="libs/reveal.js-3.3.0.1/css/reveal.css"/>
 
+  <base target="_blank">
 
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                title: 'Vision: How it works, how it develops, and why you should care',
+                        useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+                      },
 
-<link rel="stylesheet" href="libs/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+      // Author information
+      presenters: [
+            {
+        name:  'Rick O. Gilmore' ,
+        company: '',
+        gplus: '',
+        twitter: '',
+        www: '',
+        github: ''
+      },
+            ]
+    };
+  </script>
 
+  <script src="libs/header-attrs-2.9/header-attrs.js"></script>
+  <link href="libs/ioslides-13.5.1/fonts/fonts.css" rel="stylesheet" />
+  <link href="libs/ioslides-13.5.1/theme/css/default.css" rel="stylesheet" />
+  <link href="libs/ioslides-13.5.1/theme/css/phone.css" rel="stylesheet" />
+  <script src="libs/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+  <script src="libs/ioslides-13.5.1/js/prettify/prettify.js"></script>
+  <script src="libs/ioslides-13.5.1/js/prettify/lang-r.js"></script>
+  <script src="libs/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+  <script src="libs/ioslides-13.5.1/js/hammer.js"></script>
+  <script src="libs/ioslides-13.5.1/js/slide-controller.js"></script>
+  <script src="libs/ioslides-13.5.1/js/slide-deck.js"></script>
 
-  <!-- some tweaks to reveal css -->
   <style type="text/css">
-    .reveal h1 { font-size: 2.0em; }
-    .reveal h2 { font-size: 1.5em;  }
-    .reveal h3 { font-size: 1.25em;	}
-    .reveal h4 { font-size: 1em;	}
 
-    .reveal .slides>section,
-    .reveal .slides>section>section {
-      padding: 0px 0px;
-    }
-
-
-
-    .reveal table {
-      border-width: 1px;
-      border-spacing: 2px;
-      border-style: dotted;
-      border-color: gray;
-      border-collapse: collapse;
-      font-size: 0.7em;
-    }
-
-    .reveal table th {
-      border-width: 1px;
-      padding-left: 10px;
-      padding-right: 25px;
+    b, strong {
       font-weight: bold;
-      border-style: dotted;
-      border-color: gray;
     }
 
-    .reveal table td {
-      border-width: 1px;
-      padding-left: 10px;
-      padding-right: 25px;
-      border-style: dotted;
-      border-color: gray;
+    em {
+      font-style: italic;
     }
 
+    summary {
+      display: list-item;
+    }
 
+    slides > slide {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition: opacity 0.6s ease-in 0.4s;
+      -o-transition: opacity 0.6s ease-in 0.4s;
+      transition: opacity 0.6s ease-in 0.4s;
+      opacity: 0;
+    }
+/* https://github.com/ropensci/plotly/pull/524#issuecomment-468142578 */
+slide:not(.current) .plotly.html-widget{
+  display: block;
+}
+
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+            
   </style>
 
-    <style type="text/css">code{white-space: pre;}</style>
-
-    <link rel="stylesheet" href="css/styles.css"/>
-
-<!-- Printing and PDF exports -->
-<script id="paper-css" type="application/dynamic-css">
-
-/* Default Print Stylesheet Template
-   by Rob Glazebrook of CSSnewbie.com
-   Last Updated: June 4, 2008
-
-   Feel free (nay, compelled) to edit, append, and
-   manipulate this file as you see fit. */
-
-
-@media print {
-
-	/* SECTION 1: Set default width, margin, float, and
-	   background. This prevents elements from extending
-	   beyond the edge of the printed page, and prevents
-	   unnecessary background images from printing */
-	html {
-		background: #fff;
-		width: auto;
-		height: auto;
-		overflow: visible;
-	}
-	body {
-		background: #fff;
-		font-size: 20pt;
-		width: auto;
-		height: auto;
-		border: 0;
-		margin: 0 5%;
-		padding: 0;
-		overflow: visible;
-		float: none !important;
-	}
-
-	/* SECTION 2: Remove any elements not needed in print.
-	   This would include navigation, ads, sidebars, etc. */
-	.nestedarrow,
-	.controls,
-	.fork-reveal,
-	.share-reveal,
-	.state-background,
-	.reveal .progress,
-	.reveal .backgrounds {
-		display: none !important;
-	}
-
-	/* SECTION 3: Set body font face, size, and color.
-	   Consider using a serif font for readability. */
-	body, p, td, li, div {
-		font-size: 20pt!important;
-		font-family: Georgia, "Times New Roman", Times, serif !important;
-		color: #000;
-	}
-
-	/* SECTION 4: Set heading font face, sizes, and color.
-	   Differentiate your headings from your body text.
-	   Perhaps use a large sans-serif for distinction. */
-	h1,h2,h3,h4,h5,h6 {
-		color: #000!important;
-		height: auto;
-		line-height: normal;
-		font-family: Georgia, "Times New Roman", Times, serif !important;
-		text-shadow: 0 0 0 #000 !important;
-		text-align: left;
-		letter-spacing: normal;
-	}
-	/* Need to reduce the size of the fonts for printing */
-	h1 { font-size: 28pt !important;  }
-	h2 { font-size: 24pt !important; }
-	h3 { font-size: 22pt !important; }
-	h4 { font-size: 22pt !important; font-variant: small-caps; }
-	h5 { font-size: 21pt !important; }
-	h6 { font-size: 20pt !important; font-style: italic; }
-
-	/* SECTION 5: Make hyperlinks more usable.
-	   Ensure links are underlined, and consider appending
-	   the URL to the end of the link for usability. */
-	a:link,
-	a:visited {
-		color: #000 !important;
-		font-weight: bold;
-		text-decoration: underline;
-	}
-	/*
-	.reveal a:link:after,
-	.reveal a:visited:after {
-		content: " (" attr(href) ") ";
-		color: #222 !important;
-		font-size: 90%;
-	}
-	*/
-
-
-	/* SECTION 6: more reveal.js specific additions by @skypanther */
-	ul, ol, div, p {
-		visibility: visible;
-		position: static;
-		width: auto;
-		height: auto;
-		display: block;
-		overflow: visible;
-		margin: 0;
-		text-align: left !important;
-	}
-	.reveal pre,
-	.reveal table {
-		margin-left: 0;
-		margin-right: 0;
-	}
-	.reveal pre code {
-		padding: 20px;
-		border: 1px solid #ddd;
-	}
-	.reveal blockquote {
-		margin: 20px 0;
-	}
-	.reveal .slides {
-		position: static !important;
-		width: auto !important;
-		height: auto !important;
-
-		left: 0 !important;
-		top: 0 !important;
-		margin-left: 0 !important;
-		margin-top: 0 !important;
-		padding: 0 !important;
-		zoom: 1 !important;
-
-		overflow: visible !important;
-		display: block !important;
-
-		text-align: left !important;
-		-webkit-perspective: none;
-		   -moz-perspective: none;
-		    -ms-perspective: none;
-		        perspective: none;
-
-		-webkit-perspective-origin: 50% 50%;
-		   -moz-perspective-origin: 50% 50%;
-		    -ms-perspective-origin: 50% 50%;
-		        perspective-origin: 50% 50%;
-	}
-	.reveal .slides section {
-		visibility: visible !important;
-		position: static !important;
-		width: auto !important;
-		height: auto !important;
-		display: block !important;
-		overflow: visible !important;
-
-		left: 0 !important;
-		top: 0 !important;
-		margin-left: 0 !important;
-		margin-top: 0 !important;
-		padding: 60px 20px !important;
-		z-index: auto !important;
-
-		opacity: 1 !important;
-
-		page-break-after: always !important;
-
-		-webkit-transform-style: flat !important;
-		   -moz-transform-style: flat !important;
-		    -ms-transform-style: flat !important;
-		        transform-style: flat !important;
-
-		-webkit-transform: none !important;
-		   -moz-transform: none !important;
-		    -ms-transform: none !important;
-		        transform: none !important;
-
-		-webkit-transition: none !important;
-		   -moz-transition: none !important;
-		    -ms-transition: none !important;
-		        transition: none !important;
-	}
-	.reveal .slides section.stack {
-		padding: 0 !important;
-	}
-	.reveal section:last-of-type {
-		page-break-after: avoid !important;
-	}
-	.reveal section .fragment {
-		opacity: 1 !important;
-		visibility: visible !important;
-
-		-webkit-transform: none !important;
-		   -moz-transform: none !important;
-		    -ms-transform: none !important;
-		        transform: none !important;
-	}
-	.reveal section img {
-		display: block;
-		margin: 15px 0px;
-		background: rgba(255,255,255,1);
-		border: 1px solid #666;
-		box-shadow: none;
-	}
-
-	.reveal section small {
-		font-size: 0.8em;
-	}
-
-}  
-</script>
-
-
-<script id="pdf-css" type="application/dynamic-css">
-    
-/**
- * This stylesheet is used to print reveal.js
- * presentations to PDF.
- *
- * https://github.com/hakimel/reveal.js#pdf-export
- */
-
-* {
-	-webkit-print-color-adjust: exact;
-}
-
-body {
-	margin: 0 auto !important;
-	border: 0;
-	padding: 0;
-	float: none !important;
-	overflow: visible;
-}
-
-html {
-	width: 100%;
-	height: 100%;
-	overflow: visible;
-}
-
-/* Remove any elements not needed in print. */
-.nestedarrow,
-.reveal .controls,
-.reveal .progress,
-.reveal .playback,
-.reveal.overview,
-.fork-reveal,
-.share-reveal,
-.state-background {
-	display: none !important;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	text-shadow: 0 0 0 #000 !important;
-}
-
-.reveal pre code {
-	overflow: hidden !important;
-	font-family: Courier, 'Courier New', monospace !important;
-}
-
-ul, ol, div, p {
-	visibility: visible;
-	position: static;
-	width: auto;
-	height: auto;
-	display: block;
-	overflow: visible;
-	margin: auto;
-}
-.reveal {
-	width: auto !important;
-	height: auto !important;
-	overflow: hidden !important;
-}
-.reveal .slides {
-	position: static;
-	width: 100%;
-	height: auto;
-
-	left: auto;
-	top: auto;
-	margin: 0 !important;
-	padding: 0 !important;
-
-	overflow: visible;
-	display: block;
-
-	-webkit-perspective: none;
-	   -moz-perspective: none;
-	    -ms-perspective: none;
-	        perspective: none;
-
-	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
-	   -moz-perspective-origin: 50% 50%;
-	    -ms-perspective-origin: 50% 50%;
-	        perspective-origin: 50% 50%;
-}
-
-.reveal .slides section {
-	page-break-after: always !important;
-
-	visibility: visible !important;
-	position: relative !important;
-	display: block !important;
-	position: relative !important;
-
-	margin: 0 !important;
-	padding: 0 !important;
-	box-sizing: border-box !important;
-	min-height: 1px;
-
-	opacity: 1 !important;
-
-	-webkit-transform-style: flat !important;
-	   -moz-transform-style: flat !important;
-	    -ms-transform-style: flat !important;
-	        transform-style: flat !important;
-
-	-webkit-transform: none !important;
-	   -moz-transform: none !important;
-	    -ms-transform: none !important;
-	        transform: none !important;
-}
-
-.reveal section.stack {
-	margin: 0 !important;
-	padding: 0 !important;
-	page-break-after: avoid !important;
-	height: auto !important;
-	min-height: auto !important;
-}
-
-.reveal img {
-	box-shadow: none;
-}
-
-.reveal .roll {
-	overflow: visible;
-	line-height: 1em;
-}
-
-/* Slide backgrounds are placed inside of their slide when exporting to PDF */
-.reveal section .slide-background {
-	display: block !important;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	z-index: -1;
-}
-
-/* All elements should be above the slide-background */
-.reveal section>* {
-	position: relative;
-	z-index: 1;
-}
-
-/* Display slide speaker notes when 'showNotes' is enabled */
-.reveal .speaker-notes-pdf {
-	display: block;
-	width: 100%;
-	max-height: none;
-	left: auto;
-	top: auto;
-	z-index: 100;
-}
-
-/* Display slide numbers when 'slideNumber' is enabled */
-.reveal .slide-number-pdf {
-	display: block;
-	position: absolute;
-	font-size: 14px;
-}
-
-</script>
-
-
-<script>
-var style = document.createElement( 'style' );
-style.type = 'text/css';
-var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
-var style_script = document.getElementById(style_script_id).text;
-style.innerHTML = style_script;
-document.getElementsByTagName('head')[0].appendChild(style);
-</script>
+  <link rel="stylesheet" href="css/ioslides.css" type="text/css" />
 
 </head>
-<body>
-  <div class="reveal">
-    <div class="slides">
 
-<section>
-    <h1 class="title">Vision: How it works, how it develops, and why you should care</h1>
-    <h2 class="author">Rick O. Gilmore</h2>
-    <h3 class="date">2019-09-12 07:55:51</h3>
-</section>
+<body style="opacity: 0">
 
-<section><section id="preliminaries" class="title-slide slide level1"><h1>Preliminaries</h1></section><section id="about-me" class="slide level2">
-<h2>About me</h2>
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+            <p style="margin-top: 6px; margin-left: -2px;">2021-08-30 09:00:11</p>
+          </hgroup>
+  </slide>
+
+<!-- Scrolling final reference page -->
+
+<!-- http://stackoverflow.com/q/38260799 -->
+
+<style>
+slides > slide { overflow: scroll; }
+slides > slide:not(.nobackground):before {
+  background: none;
+  }
+slides > slide:not(.nobackground):after {
+  content: '';
+  background: none;
+  }
+}
+</style>
+
+<slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Preliminaries</h2></hgroup><article  id="preliminaries">
+
+</article></slide><slide class=""><hgroup><h2>About me</h2></hgroup><article  id="about-me">
+
 <ul>
 <li>B.A., Cognitive Science, Brown University</li>
 <li>M.S. &amp; Ph.D., Psychology (Cognitive Neuroscience), Carnegie Mellon University</li>
 <li>Human brain development, perception &amp; action, computational modeling, machine vision, big data, open science</li>
 <li>Founding Director of Human Imaging, Penn State Social, Life &amp; Engineering Sciences Imaging Center (SLEIC)</li>
 </ul>
-</section><section class="slide level2">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <ul>
-<li>Co-Founder/Co-Director of <a href="https://databrary.org">Databrary.org</a> data library</li>
-<li><a href="https://gilmore-lab.github.io">gilmore-lab.github.io</a></li>
+<li>Co-Founder/Co-Director of <a href='https://databrary.org' title=''>Databrary.org</a> data library</li>
+<li><a href='https://gilmore-lab.github.io' title=''>gilmore-lab.github.io</a></li>
 <li>banjo player, actor, cyclist, backpacker, poet, ham (K3ROG), native Coloradoan</li>
 </ul>
-</section><section id="agenda" class="slide level2">
-<h2>Agenda</h2>
+
+</article></slide><slide class=""><hgroup><h2>Agenda</h2></hgroup><article  id="agenda">
+
 <ul>
 <li>What’s vision for?</li>
 <li>Properties of light</li>
 <li>The visual eye and brain</li>
 <li>Measuring the development of visual perception</li>
 </ul>
-</section></section>
-<section><section id="whats-vision-for" class="title-slide slide level1"><h1>What’s vision for?</h1></section><section id="behavioral-priorities" class="slide level2">
-<h2>Behavioral priorities</h2>
+
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>What’s vision for?</h2></hgroup><article  id="whats-vision-for">
+
+</article></slide><slide class=""><hgroup><h2>Behavioral priorities</h2></hgroup><article  id="behavioral-priorities">
+
 <ul>
-<li>Reproduce</li>
+<li>Secure sustenance</li>
 <li>Avoid harm</li>
-<li>Eat &amp; drink</li>
+<li>Reproduce</li>
 </ul>
-</section><section id="behavioral-primitives" class="slide level2">
-<h2>Behavioral primitives</h2>
+
+</article></slide><slide class=""><hgroup><h2>Behavioral primitives</h2></hgroup><article  id="behavioral-primitives">
+
 <ul>
 <li>Locomotion</li>
 <li>Object interaction/manipulation</li>
 <li>Communication</li>
 </ul>
-</section><section id="vision-answers" class="slide level2">
-<h2>Vision answers</h2>
+
+</article></slide><slide class=""><hgroup><h2>Vision answers</h2></hgroup><article  id="vision-answers">
+
 <ul>
 <li>Where things are; where they’re moving; where/how I’m moving</li>
 <li>What’s out there</li>
 <li>How should I respond</li>
 </ul>
-</section><section id="vision-informs-about" class="slide level2">
-<h2>Vision informs about</h2>
+
+</article></slide><slide class=""><hgroup><h2>Vision informs observers about…</h2></hgroup><article  id="vision-informs-observers-about">
+
 <ul>
 <li>Geometry and motion of objects and surfaces</li>
 <li>Surface properties (color, texture, rigidity)</li>
 <li>Object properties (animate/inanimate; familiar/un-; person/animal…)</li>
 </ul>
-</section></section>
-<section><section id="properties-of-light" class="title-slide slide level1"><h1>Properties of light</h1></section><section id="other-kinds-of-sensory-channels" class="slide level2">
-<h2>Other kinds of sensory channels</h2>
-<table>
-<thead>
-<tr class="header">
-<th>Informal name</th>
-<th>Source</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Vision</td>
-<td>Electromagnetic radiation</td>
-</tr>
-<tr class="even">
-<td>Audition</td>
-<td>Mechanical vibration in air/water</td>
-</tr>
-<tr class="odd">
-<td>Touch</td>
-<td>Mechanical vibration of skin on surface</td>
-</tr>
-<tr class="even">
-<td>Vestibular</td>
-<td>Rotation &amp; linear acceleration of head</td>
-</tr>
-<tr class="odd">
-<td>Olfaction</td>
-<td>Chemical patterns in air/water</td>
-</tr>
-<tr class="even">
-<td>Gustation</td>
-<td>Chemical patterns in mouth</td>
-</tr>
-<tr class="odd">
-<td>Electroception</td>
-<td>Electromagnetic radiation</td>
-</tr>
-<tr class="even">
-<td>Magnetoreception</td>
-<td>Electromagnetic radiation patterns</td>
-</tr>
-<tr class="odd">
-<td>Kinesthesia</td>
-<td>Position, velocity, acceleration of limbs, body</td>
-</tr>
-</tbody>
-</table>
-</section><section id="plenoptic-function" class="slide level2">
-<h2>Plenoptic function</h2>
-</section><section class="slide level2">
 
-<div class="figure">
-<img src="img/plenoptic-function-adelson-1991.jpg" alt="(Adelson &amp; Bergen, 1991)" width="500px" />
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Properties of light</h2></hgroup><article  id="properties-of-light">
+
+</article></slide><slide class=""><hgroup><h2>Physics of sensation</h2></hgroup><article  id="physics-of-sensation">
+
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left">Informal name</th>
+<th align="left">Source</th>
+</tr>
+<tr class="odd">
+<td align="left">Vision</td>
+<td align="left">Electromagnetic radiation</td>
+</tr>
+<tr class="even">
+<td align="left">Audition</td>
+<td align="left">Mechanical vibration in air/water</td>
+</tr>
+<tr class="odd">
+<td align="left">Touch</td>
+<td align="left">Mechanical vibration of skin on surface</td>
+</tr>
+<tr class="even">
+<td align="left">Vestibular</td>
+<td align="left">Rotation &amp; linear acceleration of head</td>
+</tr>
+<tr class="odd">
+<td align="left">Olfaction</td>
+<td align="left">Chemical patterns in air/water</td>
+</tr>
+<tr class="even">
+<td align="left">Gustation</td>
+<td align="left">Chemical patterns in mouth</td>
+</tr>
+</table>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left">Informal name</th>
+<th align="left">Source</th>
+</tr>
+<tr class="odd">
+<td align="left">Electroception</td>
+<td align="left">Electromagnetic radiation</td>
+</tr>
+<tr class="even">
+<td align="left">Magnetoreception</td>
+<td align="left">Electromagnetic radiation patterns</td>
+</tr>
+<tr class="odd">
+<td align="left">Kinesthesia</td>
+<td align="left">Position, velocity, acceleration of limbs, body</td>
+</tr>
+</table>
+
+</article></slide><slide class=""><hgroup><h2>Plenoptic function</h2></hgroup><article  id="plenoptic-function">
+
+<div class="figure" style="text-align: center">
+<img src="img/plenoptic-function-adelson-1991.jpg" alt="[(Adelson &amp; Bergen, 1991)](http://citeseer.ist.psu.edu/viewdoc/summary?doi=10.1.1.2.9848)" width="500px" />
+
 <p class="caption">
-(Adelson &amp; Bergen, 1991)
-</p>
-</div>
-</section><section id="light" class="slide level2">
-<h2>Light</h2>
+
+<a href='http://citeseer.ist.psu.edu/viewdoc/summary?doi=10.1.1.2.9848' title=''>(Adelson &amp; Bergen, 1991)</a>
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="figure" style="text-align: center">
+<img src="https://media.springernature.com/original/springer-static/image/prt%3A978-0-387-31439-6%2F15/MediaObjects/978-0-387-31439-6_15_Part_Fig1-7_HTML.gif" alt="[[@Chan2014-il]](https://doi.org/10.1007/978-0-387-31439-6_7)"  />
+
+<p class="caption">
+
+<a href='https://doi.org/10.1007/978-0-387-31439-6_7' title=''><span class="cite">(Chan, 2014)</span></a>
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2>Light</h2></hgroup><article  id="light">
+
 <ul>
 <li>Electromagnetic (EM) radiation</li>
 <li>Wavelength (1/frequency) and intensity</li>
 </ul>
-</section><section class="slide level2">
 
-<div class="centered">
-<p>
-<a href="https://commons.wikimedia.org/wiki/File:EM_Spectrum_Properties_edit.svg#/media/File:EM_Spectrum_Properties_edit.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/EM_Spectrum_Properties_edit.svg/1200px-EM_Spectrum_Properties_edit.svg.png" alt="EM Spectrum Properties edit.svg"></a><br>By <a href="//commons.wikimedia.org/wiki/User:Inductiveload" title="User:Inductiveload">Inductiveload</a>, <a rel="nofollow" class="external text" href="https://mynasadata.larc.nasa.gov/images/EM_Spectrum3-new.jpg">NASA</a> - self-made, information by NASA Based off of <a href="//commons.wikimedia.org/wiki/File:EM_Spectrum3-new.jpg" title="File:EM Spectrum3-new.jpg">File:EM_Spectrum3-new.jpg</a> by NASA The butterfly icon is from the P icon set, <a href="//commons.wikimedia.org/wiki/File:P_biology.svg" title="File:P biology.svg">P biology.svg</a> The humans are from the Pioneer plaque, <a href="//commons.wikimedia.org/wiki/File:Human.svg" title="File:Human.svg">Human.svg</a> The buildings are the Petronas towers and the Empire State Buildings, both from <a href="//commons.wikimedia.org/wiki/File:Skyscrapercompare.svg" title="File:Skyscrapercompare.svg">Skyscrapercompare.svg</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=2974242">Link</a>
-</p>
-</div>
-</section><section class="slide level2">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="figure" style="text-align: center">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/EM_Spectrum_Properties_edit.svg/1200px-EM_Spectrum_Properties_edit.svg.png" alt="Source: Wikipedia" width="900px" />
+
+<p class="caption">
+
+Source: Wikipedia
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <div class="centered">
 <p>Reflects off surfaces to different degrees</p>
-<p><img src="https://www.cns.nyu.edu/~david/courses/perception/lecturenotes/color/color-slides/Slide14.jpg"></p>
-</div>
-</section><section class="slide level2">
+
+<p><img src="https://www.cns.nyu.edu/~david/courses/perception/lecturenotes/color/color-slides/Slide14.jpg"></p></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <div class="centered">
 <p>Perceived color differences correspond to different patterns of light reflection.</p>
-<p><img src="https://sites.google.com/site/obeluwa/_/rsrc/1372214890170/skin/introduction-to-diffuse-reflectance-spectroscopy/sample-spectra.png"></p>
-</div>
-</section><section class="slide level2">
+
+<p><img src="https://sites.google.com/site/obeluwa/_/rsrc/1372214890170/skin/introduction-to-diffuse-reflectance-spectroscopy/sample-spectra.png"></p></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <div class="centered">
-<p>Refracted (bent) by some substances</p>
-<p><img src="https://www.sciencelearn.org.nz/system/images/images/000/000/050/embed/Converging-lens20150805-30610-9sjoqh.jpg?1447040428"></p>
-</div>
-</section><section id="light-1" class="slide level2">
-<h2>Light</h2>
+<p>Light is refracted (bent) by some substances</p>
+
+<p><img src="https://www.sciencelearn.org.nz/system/images/images/000/000/050/embed/Converging-lens20150805-30610-9sjoqh.jpg?1447040428"></p></div>
+
+</article></slide><slide class=""><hgroup><h2>Light</h2></hgroup><article  id="light-1">
+
 <ul>
 <li>Provides fast (2.99 million m/s; 186 million mi/hr) information about surfaces at a distance</li>
 <li>vs. sound (340 m/s; 767 mi/hr)</li>
 <li>vs. chemical signals (min/mi)</li>
 </ul>
-</section><section id="projects-images-that-relate-to-shapeorientation" class="slide level2">
-<h2>Projects images that relate to shape/orientation</h2>
-<div class="centered">
-<p><img src="https://thebrain.mcgill.ca/flash/a/a_02/a_02_p/a_02_p_vis/a_02_p_vis_1p.jpg"> </br> <img src="https://thebrain.mcgill.ca/flash/a/a_02/a_02_p/a_02_p_vis/a_02_p_vis_1q.jpg"> </br></p>
-<p><a href="https://thebrain.mcgill.ca/flash/a/a_02/a_02_cr/a_02_cr_vis/a_02_cr_vis.html">The Brain from top to bottom</a></p>
-</div>
-</section></section>
-<section><section id="the-visual-eye-and-brain" class="title-slide slide level1"><h1>The visual eye and brain</h1></section><section id="the-eye" class="slide level2">
-<h2>The eye</h2>
-<div class="centered">
-<p><img src="https://hmslade5.files.wordpress.com/2012/03/anatomy-of-the-eye.jpg"></p>
-</div>
-<aside class="notes">
-<p>This figure shows the gross anatomy of the eye.</p>
-</aside>
-</section><section id="as-an-auto-focus-auto-exposure-camera" class="slide level2">
-<h2>as an auto-focus, auto-exposure camera…</h2>
-<div class="centered">
-<p><img src="https://www.optilase.com/wp-content/uploads/2014/12/camera-lens-eye-lens.jpg"></p>
-</div>
-</section><section id="part-of-a-self-stabilizing-system" class="slide level2">
-<h2>part of a self-stabilizing system…</h2>
+
+</article></slide><slide class=""><hgroup><h2>Projects images that relate to shape/orientation</h2></hgroup><article  id="projects-images-that-relate-to-shapeorientation">
+
+<p><img src="https://thebrain.mcgill.ca/flash/a/a_02/a_02_p/a_02_p_vis/a_02_p_vis_1p.jpg" width="900px" style="display: block; margin: auto;" /></p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p><img src="https://thebrain.mcgill.ca/flash/a/a_02/a_02_p/a_02_p_vis/a_02_p_vis_1q.jpg" width="900px" style="display: block; margin: auto;" /></p>
+
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>The visual eye and brain</h2></hgroup><article  id="the-visual-eye-and-brain">
+
+</article></slide><slide class=""><hgroup><h2>The eye</h2></hgroup><article  id="the-eye">
+
+<p><img src="https://hmslade5.files.wordpress.com/2012/03/anatomy-of-the-eye.jpg" width="600px" style="display: block; margin: auto;" /></p>
+
+</article></slide><slide class=""><hgroup><h2>as an auto-focus, auto-exposure camera…</h2></hgroup><article  id="as-an-auto-focus-auto-exposure-camera">
+
+<p><img src="https://www.optilase.com/wp-content/uploads/2014/12/camera-lens-eye-lens.jpg" style="display: block; margin: auto;" /></p>
+
+</article></slide><slide class=""><hgroup><h2>part of a self-stabilizing system…</h2></hgroup><article  id="part-of-a-self-stabilizing-system">
+
 <!-- Kestrel showing image stabilization -->
-<iframe width="560" height="315" src="https://www.youtube.com/embed/JGArTWOJtXs?start=13" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JGArTWOJtXs?start=7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+
 </iframe>
-</section><section id="the-retina" class="slide level2">
-<h2>The retina…</h2>
-<div class="centered">
-<p><img src="https://www.feinberg.northwestern.edu/gfx/news/retina.jpg" width="700px" /></p>
-<!-- <img src="https://www.feinberg.northwestern.edu/gfx/news/retina.jpg" height="500px"> -->
-</div>
-</section><section id="samples-light-intensity-wavelength-and-spatial-pattern" class="slide level2">
-<h2>…samples light intensity, wavelength, and spatial pattern</h2>
-</section><section id="via-photoreceptors" class="slide level2">
-<h2>via photoreceptors</h2>
-<div class="centered">
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/1416_Color_Sensitivity.jpg/1200px-1416_Color_Sensitivity.jpg" /></p>
-</div>
-</section><section class="slide level2">
 
-<!-- Peripheral retina -->
-<div class="centered">
-<!-- <img src="https://i.pinimg.com/originals/9f/08/85/9f0885d4c209d5275f631ac194eb4f4b.jpg" height=550px> -->
-<p><img data-src="https://i.pinimg.com/originals/9f/08/85/9f0885d4c209d5275f631ac194eb4f4b.jpg" /></p>
-</div>
-</section><section class="slide level2">
+</article></slide><slide class=""><hgroup><h2>The retina…</h2></hgroup><article  id="the-retina">
 
-<!-- Central retina -->
-<div class="centered">
-<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/a/a6/ConeMosaics.jpg" alt="Source: Wikipedia" /></p>
-</div>
-</section><section class="slide level2">
+<p><img src="https://www.feinberg.northwestern.edu/gfx/news/retina.jpg" width="600px" style="display: block; margin: auto;" /></p>
+
+</article></slide><slide class=""><hgroup><h2>…samples light intensity, wavelength, and spatial pattern</h2></hgroup><article  id="samples-light-intensity-wavelength-and-spatial-pattern">
+
+</article></slide><slide class=""><hgroup><h2>via &lsquo;wavelength-tuned&rsquo; photoreceptors</h2></hgroup><article  id="via-wavelength-tuned-photoreceptors">
 
 <div class="centered">
-<div class="figure">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Human_photoreceptor_distribution.svg/1200px-Human_photoreceptor_distribution.svg.png" alt="Source: Wikipedia" height="550px" />
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/1416_Color_Sensitivity.jpg/1200px-1416_Color_Sensitivity.jpg" width="800px" style="display: block; margin: auto;" /></p></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="figure" style="text-align: center">
+<img src="https://i.pinimg.com/originals/9f/08/85/9f0885d4c209d5275f631ac194eb4f4b.jpg" alt="Peripheral retina" height="500px" />
+
 <p class="caption">
+
+Peripheral retina
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="figure" style="text-align: center">
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/ConeMosaics.jpg" alt="Central retina" width="800px" />
+
+<p class="caption">
+
+Central retina
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="figure" style="text-align: center">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Human_photoreceptor_distribution.svg/1200px-Human_photoreceptor_distribution.svg.png" alt="Source: Wikipedia" width="600px" />
+
+<p class="caption">
+
 Source: Wikipedia
-</p>
-</div>
-<!-- <img src="<p><a href="https://commons.wikimedia.org/wiki/File:Human_photoreceptor_distribution.svg#/media/File:Human_photoreceptor_distribution.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Human_photoreceptor_distribution.svg/1200px-Human_photoreceptor_distribution.svg.png" alt="Human photoreceptor distribution.svg" height=500px></a><br>By <a href="//commons.wikimedia.org/wiki/User:Cmglee" title="User:Cmglee">Cmglee</a> - <span class="int-own-work" lang="en" xml:lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=29924570">Link</a></p>" -->
-</div>
-</section><section id="photoreceptor-information-processing" class="slide level2">
-<h2>Photoreceptor information processing</h2>
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2>Photoreceptor information processing</h2></hgroup><article  id="photoreceptor-information-processing">
+
 <ul>
 <li>Separate channels for short, medium, long wavelengths (cones): chromatic</li>
 <li>Black/gray/white or overall illumination (rods): achromatic</li>
@@ -675,510 +395,659 @@ Source: Wikipedia
 <li>Non-uniform resolution (center &gt;&gt; periphery)</li>
 <li>Focused by cornea (passive) + lens (active), except…</li>
 </ul>
-</section><section class="slide level2">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <!-- Myopia -->
-<div class="centered">
-<p><img src="https://ecpbuilder.com/wp-content/uploads/sites/530/2015/10/myopia.jpg" width="700px" /> <!-- </div> --></p>
-</section><section id="the-visual-brain" class="slide level2">
-<h2>The visual brain</h2>
-<div class="centered">
-<p><img src="https://mybrainnotes.com/brain-visual-areas-2.jpg" height=500px></p>
-</div>
-</section><section id="primary-feedforward-pathway" class="slide level2">
-<h2>Primary (feedforward) pathway</h2>
+
+<p><img src="https://ecpbuilder.com/wp-content/uploads/sites/530/2015/10/myopia.jpg" width="700px" style="display: block; margin: auto;" /></p>
+
+</article></slide><slide class=""><hgroup><h2>The visual brain</h2></hgroup><article  id="the-visual-brain">
+
+<div class="figure" style="text-align: center">
+<img src="https://images.squarespace-cdn.com/content/v1/571fba899f7266a7171030cf/1462222122503-RFJMLWD4XWA4EJT4K0FO/image-asset.jpeg?format=1500w" alt="(Logothetis, N., November 1999. Vision: A window on consciousness. Scientific American" height="550px" />
+
+<p class="caption">
+
+(Logothetis, N., November 1999. Vision: A window on consciousness. Scientific American
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2>Primary (feedforward) pathway</h2></hgroup><article  id="primary-feedforward-pathway">
+
 <ul>
 <li>Retina -&gt;</li>
 <li>Thalamus -&gt;</li>
 <li>Primary visual cortex (V1) in occipital lobe</li>
 </ul>
-</section><section class="slide level2">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <!-- Visual projections to thalamus -->
+
 <div class="centered">
-<p><img src="https://i.stack.imgur.com/Go7pv.gif" height="600px" /></p>
-</div>
-</section><section class="slide level2">
+<p><img src="https://i.stack.imgur.com/Go7pv.gif" height="600px" style="display: block; margin: auto;" /></p></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <!-- Projection to visual cortex -->
-<div class="centered">
-<p><img src="https://cdn.theconversation.com/files/139134/width754/image-20160926-13523-17pujyt.png" width="800px" /></p>
-</div>
-</section><section id="retinotopic-map" class="slide level2">
-<h2>Retinotopic map</h2>
-<div class="centered">
-<p><img data-src="https://jov.arvojournals.org/data/Journals/JOV/933499/jov-3-10-1-fig001.jpeg" /></p>
-</div>
-</section><section id="visual-processing-dominates-the-primate-brain" class="slide level2">
-<h2>Visual processing dominates the primate brain</h2>
-</section><section class="slide level2">
 
-<!-- Van Essen macaque -->
 <div class="centered">
-<div class="figure">
-<img src="https://www.cse.yorku.ca/~billk/images/brainMap.gif" alt="Visually responsive areas of macaque" height="600px" />
+<p><img src="https://cdn.theconversation.com/files/139134/width754/image-20160926-13523-17pujyt.png" width="800px" style="display: block; margin: auto;" /></p></div>
+
+</article></slide><slide class=""><hgroup><h2>Retinotopic map</h2></hgroup><article  id="retinotopic-map">
+
+<div class="figure" style="text-align: center">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Retinotopic_English.jpg/700px-Retinotopic_English.jpg" alt="https://en.wikipedia.org/wiki/Retinotopy"  />
+
 <p class="caption">
-Visually responsive areas of macaque
-</p>
-</div>
-</div>
-</section></section>
-<section><section id="measuring-visual-function-and-its-development" class="title-slide slide level1"><h1>Measuring visual function and its development</h1></section><section id="psychophysical-functions" class="slide level2">
-<h2>Psychophysical functions</h2>
+
+<a href='https://en.wikipedia.org/wiki/Retinotopy' title=''>https://en.wikipedia.org/wiki/Retinotopy</a>
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2>Visual processing dominates the primate brain</h2></hgroup><article  id="visual-processing-dominates-the-primate-brain">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="figure" style="text-align: center">
+<img src="https://www.jneurosci.org/content/jneuro/23/10/3981/F1.large.jpg" alt="[[@Tootell2003-oo]](https://www.ncbi.nlm.nih.gov/pubmed/12764082)" height="500px" />
+
+<p class="caption">
+
+<a href='https://www.ncbi.nlm.nih.gov/pubmed/12764082' title=''><span class="cite">(Tootell, Tsao, &amp; Vanduffel, 2003)</span></a>
+
+</p></div>
+
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Measuring visual function and its development</h2></hgroup><article  id="measuring-visual-function-and-its-development">
+
+</article></slide><slide class=""><hgroup><h2>Psychophysical functions</h2></hgroup><article  id="psychophysical-functions">
+
 <div class="centered">
-<p><img src="https://www.psywww.com/intropsych/ch04-senses/04stevenscurves.jpg" height="500px" /></p>
-</div>
-</section><section id="psychophysical-methods" class="slide level2">
-<h2>Psychophysical methods</h2>
+<p><img src="https://www.psywww.com/intropsych/ch04-senses/04stevenscurves.jpg" height="500px" style="display: block; margin: auto;" /></p></div>
+
+</article></slide><slide class=""><hgroup><h2>Psychophysical methods</h2></hgroup><article  id="psychophysical-methods">
+
 <ul>
 <li><em>Method of constants</em> (fixed levels)</li>
 <li><em>Method of adjustment</em> (raise/lower amplitude until detectable/indetectable)</li>
-<li><em>Method of limits</em> (“can you see me now? now?”; often use staircases)</li>
+<li><em>Method of limits</em> (&ldquo;can you see me now? now?&rdquo;; often use staircases)</li>
 </ul>
-</section><section id="psychophysiological-functions" class="slide level2">
-<h2>Psychophys<em>iolog</em>ical functions</h2>
-<div class="centered">
-<p><img src="https://www.nature.com/pr/journal/v60/n4/images/pr2006267f3.jpg" width="900px" /></p>
-<p><span class="citation" data-cites="Mirabella2006-ro">(Mirabella, Kjaer, Norcia, Good, &amp; Madan, 2006)</span></p>
-</div>
-</section><section id="acuity-detailpattern-vision" class="slide level2">
-<h2>Acuity (detail/pattern vision)</h2>
+
+</article></slide><slide class=""><hgroup><h2>Psychophys<em>iolog</em>ical functions</h2></hgroup><article  id="psychophysiological-functions">
+
+<div class="figure" style="text-align: center">
+<img src="https://media.springernature.com/full/springer-static/image/art%3A10.1203%2F01.pdr.0000238249.44088.2c/MediaObjects/41390_2006_Article_BFpr2006267_Fig1_HTML.jpg?as=webp" alt="[[@Mirabella2006-ro]](http://dx.doi.org/10.1203/01.pdr.0000238249.44088.2c)" width="700px" />
+
+<p class="caption">
+
+<a href='http://dx.doi.org/10.1203/01.pdr.0000238249.44088.2c' title=''><span class="cite">(Mirabella, Kjaer, Norcia, Good, &amp; Madan, 2006)</span></a>
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="figure" style="text-align: center">
+<img src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1203%2F01.pdr.0000238249.44088.2c/MediaObjects/41390_2006_Article_BFpr2006267_Fig2_HTML.jpg?as=webp" alt="[[@Mirabella2006-ro]](http://dx.doi.org/10.1203/01.pdr.0000238249.44088.2c)" width="600px" />
+
+<p class="caption">
+
+<a href='http://dx.doi.org/10.1203/01.pdr.0000238249.44088.2c' title=''><span class="cite">(Mirabella, Kjaer, Norcia, Good, &amp; Madan, 2006)</span></a>
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2>Acuity (detail/pattern vision)</h2></hgroup><article  id="acuity-detailpattern-vision">
+
 <ul>
 <li>Grating acuity</li>
 <li>Vernier</li>
 <li>Symbol/letter (optotype) acuity</li>
 </ul>
-</section><section class="slide level2">
 
-<div class="centered">
-<!-- <img src="https://images.nature.com/full/nature-assets/pr/journal/v60/n4/images/pr2006267f1.jpg"> -->
-<p><img data-src="https://images.nature.com/full/nature-assets/pr/journal/v60/n4/images/pr2006267f1.jpg" /> </br> <span class="citation" data-cites="Mirabella2006-ro">(Mirabella et al., 2006)</span></p>
-</div>
-</section><section id="similar-rates-of-development-across-primate-species" class="slide level2">
-<h2>Similar rates of development across primate species</h2>
-</section><section class="slide level2">
+</article></slide><slide class=""><hgroup><h2>Similar rates of development across primate species</h2></hgroup><article  id="similar-rates-of-development-across-primate-species">
 
-<div class="centered">
-<!-- </br> -->
-<!-- <img src="https://www.jneurosci.org/content/jneuro/36/45/11384/F2.large.jpg" height=550px> -->
-<p><img data-src="https://www.jneurosci.org/content/jneuro/36/45/11384/F2.large.jpg" /> </br> <span class="citation" data-cites="Kiorpes2016-ut">(Kiorpes, 2016)</span></p>
-</div>
-</section><section id="measuring-visual-acuity" class="slide level2">
-<h2>Measuring visual acuity</h2>
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="figure" style="text-align: center">
+<img src="https://www.jneurosci.org/content/jneuro/36/45/11384/F2.large.jpg" alt="[[@Kiorpes2016-ut]](http://dx.doi.org/10.1523/JNEUROSCI.2937-16.2016)" height="550px" />
+
+<p class="caption">
+
+<a href='http://dx.doi.org/10.1523/JNEUROSCI.2937-16.2016' title=''><span class="cite">(Kiorpes, 2016)</span></a>
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2>Measuring visual acuity</h2></hgroup><article  id="measuring-visual-acuity">
+
 <!-- Measuring visual acuity HOTV and Lea symbols -->
+
 <div class="centered">
-<p><img src="https://s3.amazonaws.com/cdn.bernell.com/images/uploads/712_4817_thumb.jpg" height="500px" /></p>
-</div>
-</section><section id="contrast-sensitivity" class="slide level2">
-<h2>Contrast sensitivity</h2>
+<p><img src="https://s3.amazonaws.com/cdn.bernell.com/images/uploads/712_4817_thumb.jpg" height="500px" style="display: block; margin: auto;" /></p></div>
+
+</article></slide><slide class=""><hgroup><h2>Contrast sensitivity</h2></hgroup><article  id="contrast-sensitivity">
+
 <ul>
 <li>Light/dark ratio vs. spatial frequency (level of detail)</li>
 </ul>
-</section><section class="slide level2">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="figure" style="text-align: center">
+<img src="https://www.psychophysics.uk/wp-content/uploads/2019/04/typical-contrast-sensitivity-function.jpg" alt="Contrast sensitivity function"  />
+
+<p class="caption">
+
+Contrast sensitivity function
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="figure" style="text-align: center">
+<img src="https://www.researchgate.net/publication/313816987/figure/fig2/AS:614249734864898@1523459957272/Pelli-Robson-contrast-sensitivity-chart-Precision-Vision-LaSalle-IL-11-The_Q640.jpg" alt="Pelli-Robson Contrast Sensitivity Chart" height="550px" />
+
+<p class="caption">
+
+Pelli-Robson Contrast Sensitivity Chart
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="figure" style="text-align: center">
+<img src="https://arvo.silverchair-cdn.com/arvo/content_public/journal/jov/933685/m_i1534-7362-14-13-16-f01.png?Expires=1633350425&Signature=CMSwqDhlJZds54KXDfPyXQAuhDLaO-WsVKUkrA99glxv6j4QcgBaOxnkAsVEQ7W5s8hX9wdF9fw0I-dLXGDEZMYc7lYTTV~lV4AR4-MPfn1JiDRHRtfIo7Vcg~fbgIc3OU5IouEz33aBVXD1S5oZPeP3bmbAcx60sMk5nZdRKd7mA6~1OhDqiSxqIr0mudzpo2snp~04XPMvuMpRWJCUo6BMl6rOyqRyTKIBI26rZN~Wxg6ljkled6sxxIIawVBjCTbrfCQ6lGL9x07ZqbcpQD6ElOPGBlsLH3sGIPyZslu3cFK4ci0EHyyxmpUDe1AMBFrQYMhjvHJr~tkUbJdhDw__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA" alt="[[@Von_Hofsten2014-gy]](http://dx.doi.org/10.1167/14.13.16)"  />
+
+<p class="caption">
+
+<a href='http://dx.doi.org/10.1167/14.13.16' title=''><span class="cite">(Hofsten et al., 2014)</span></a>
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="figure" style="text-align: center">
+<img src="https://arvo.silverchair-cdn.com/arvo/content_public/journal/jov/933685/m_i1534-7362-14-13-16-f04.png?Expires=1633350425&Signature=TisxSffCw-925oXEn9ZLATW28JICQZCOb-7B1fKopFLdDANlui0KvNELEv5-fiIrXa7-0LwM7~rybCHpXhPcY5F4XIunTdCS9GJLCqgSOfzpyTkfgJ9WnYeF8cqr0HQ5XmM7bVaTpozBScMk0~HXHxenK1pA189j-YAOkmwRQaJQqg5~SQ8KYz0xzRIfpNts-CXql3SnTC41eg4FMdAVVx4LYcE4GKkpFHFBFT~H~QgFf3pKtRWgpVPUWXEV99T3vRUph3Ls~5zHjNvHvzLYDN1ho2EdCnpwmhHY4XSbeaJk8JeSoP-ToTmcZ-o5VhNepehJ7FJKVrCghOE9R6inVg__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA" alt="[[@Von_Hofsten2014-gy]](http://dx.doi.org/10.1167/14.13.16)" width="800px" />
+
+<p class="caption">
+
+<a href='http://dx.doi.org/10.1167/14.13.16' title=''><span class="cite">(Hofsten et al., 2014)</span></a>
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2>Similar rates of development across primate species</h2></hgroup><article  id="similar-rates-of-development-across-primate-species-1">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <div class="centered">
-<p><img data-src="https://www.nde-ed.org/EducationResources/CommunityCollege/PenetrantTest/Graphics/CSFchart640x480.jpg" /> <!-- <img src="https://www.nde-ed.org/EducationResources/CommunityCollege/PenetrantTest/Graphics/CSFchart640x480.jpg" height=550px> --></p>
-</div>
-</section><section class="slide level2">
+
+<div class="figure" style="text-align: center">
+<img src="https://www.jneurosci.org/content/jneuro/36/45/11384/F3.large.jpg" alt="[[@Kiorpes2016-ut]](http://dx.doi.org/10.1523/JNEUROSCI.2937-16.2016)" height="500px" />
+
+<p class="caption">
+
+<a href='http://dx.doi.org/10.1523/JNEUROSCI.2937-16.2016' title=''><span class="cite">(Kiorpes, 2016)</span></a>
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2>Effects of poor contrast sensitivity on newborn vision</h2></hgroup><article  id="effects-of-poor-contrast-sensitivity-on-newborn-vision">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <div class="centered">
-<!-- <img src="https://jov.arvojournals.org/data/Journals/JOV/933685/m_i1534-7362-14-13-16-f01.png"> -->
-<p><img data-src="https://jov.arvojournals.org/data/Journals/JOV/933685/m_i1534-7362-14-13-16-f01.png" /> </br> <span class="citation" data-cites="Von_Hofsten2014-gy">(Hofsten et al., 2014)</span></p>
-</div>
-</section><section id="similar-rates-of-development-across-primate-species-1" class="slide level2">
-<h2>Similar rates of development across primate species</h2>
-</section><section class="slide level2">
 
-<div class="centered">
-<p><img data-src="https://www.jneurosci.org/content/jneuro/36/45/11384/F3.large.jpg" /></p>
-<!-- <img src="https://www.jneurosci.org/content/jneuro/36/45/11384/F3.large.jpg" height=550px> -->
-<p><span class="citation" data-cites="Kiorpes2016-ut">(Kiorpes, 2016)</span></p>
-</div>
-</section><section id="effects-of-poor-contrast-sensitivity-on-newborn-vision" class="slide level2">
-<h2>Effects of poor contrast sensitivity on newborn vision</h2>
-</section><section class="slide level2">
+<div class="figure" style="text-align: center">
+<img src="https://www.jneurosci.org/content/jneuro/36/45/11384/F4.large.jpg" alt="[[@Kiorpes2016-ut]](http://dx.doi.org/10.1523/JNEUROSCI.2937-16.2016)" width="900px" />
 
-<div class="centered">
-<p><img data-src="https://www.jneurosci.org/content/jneuro/36/45/11384/F4.large.jpg" /></p>
-<!-- <img src="https://www.jneurosci.org/content/jneuro/36/45/11384/F4.large.jpg" height=550px> -->
-<p><span class="citation" data-cites="Kiorpes2016-ut">(Kiorpes, 2016)</span></p>
-</div>
-</section><section id="motion-coherence-signal-vs.noise" class="slide level2">
-<h2>Motion coherence (Signal vs. noise)</h2>
+<p class="caption">
+
+<a href='http://dx.doi.org/10.1523/JNEUROSCI.2937-16.2016' title=''><span class="cite">(Kiorpes, 2016)</span></a>
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2>Motion coherence (Signal vs. noise)</h2></hgroup><article  id="motion-coherence-signal-vs.-noise">
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/2DdlcdFeO9I" frameborder="0" allowfullscreen>
+
 </iframe>
-</section><section id="rate-of-development-varies-across-visual-functions" class="slide level2">
-<h2>Rate of development varies across visual functions</h2>
+
+</article></slide><slide class=""><hgroup><h2>Rate of development varies across visual functions</h2></hgroup><article  id="rate-of-development-varies-across-visual-functions">
+
 <ul>
 <li>Some (e.g., motion sensitivity) not adult-like until early teens</li>
 </ul>
-</section><section class="slide level2">
 
-<div class="centered">
-<p><a href="https://www.jneurosci.org/content/jneuro/36/45/11384/F5.large.jpg"> <img src="https://www.jneurosci.org/content/jneuro/36/45/11384/F5.large.jpg" height=550px> </a> </br> <span class="citation" data-cites="Kiorpes2016-ut">(Kiorpes, 2016)</span></p>
-</div>
-</section><section id="atypical-development-autism" class="slide level2">
-<h2>Atypical development: Autism</h2>
-</section><section class="slide level2">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
-<div class="centered">
-<p><img src="https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/brain/133/2/10.1093/brain/awp272/2/awp272f2.gif?Expires=1567636524&Signature=0NDKyZR0azEUYi-Ww4O6SqJtGy0T33etOApiySqdOKg57L3JL--sDESjxw2udt2NTZSPtGwe0~QdQQu~CId0WyaPEJPxco3GJ5DjBz-9ni9lng2nHWwT6dPbXZ~BkFUaJVxjSp2wTzuhMwBV6ANNQ48dTtgQvN1NMUm4FKmNfSNi7OCb~JAWI4RyRP6Y0XWBrQDOFF8kkezZR5SGwfpUUwYM3HcBukVXMS3SVLUgPYv3B2fkeGYq0IhIrdhcnAN8tSe4FzuQ3lV3LsKJmwISXk~GqLxH~npc4ybnJPQw1McRJ1cy12ieKhX5ryINgd46FiYIWCZLSYv-W4KAKqcyCA__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA" height=500px></p>
-<p><a href="https://dx.doi.org/10.1093/brain/awp272"><span class="citation" data-cites="Koldewyn2010-ap">(Koldewyn, Whitney, &amp; Rivera, 2010)</span></a></p>
-</div>
-</section><section id="atypical-development-amblyopia" class="slide level2">
-<h2>Atypical development: Amblyopia</h2>
+<div class="figure" style="text-align: center">
+<img src="https://www.jneurosci.org/content/jneuro/36/45/11384/F5.large.jpg" alt="[[@Kiorpes2016-ut]](http://dx.doi.org/10.1523/JNEUROSCI.2937-16.2016)"  />
+
+<p class="caption">
+
+<a href='http://dx.doi.org/10.1523/JNEUROSCI.2937-16.2016' title=''><span class="cite">(Kiorpes, 2016)</span></a>
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2>Atypical development: Autism</h2></hgroup><article  id="atypical-development-autism">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="figure" style="text-align: center">
+<img src="https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/brain/133/2/10.1093/brain/awp272/2/awp272f3.gif?Expires=1633351432&Signature=PDQgU2OJX5HOhegH07b-zYZjmnoZ8rIvmxzs6pbHB1i-O-xK6yyOmbLpepDBEKksNAoJAh04qt-zBkkdSXtQun5Ub0DlFKud5zb2znvMzbtEReNb8h48c~ZA3KYvvosntOsO9E~8sYqEJpKw6PN5YmYtcJ~YDMCPZv7VURCIn4J2KqSGJbg~kYfkM5JfTQ4KWTtoQWHYUnSG7zGAANOJhmyqA0TuAGRm9FQgaR7ek1jN9ZYerH2O99xf~u1KMWLUsed9r2c5d3UJJrmsEo4F6iBOCQDBHNRjNGLcMt5c8p~k479GEXu24cn5BCjZi-5LqXgWw04~U~nReXT6WIyoVw__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA" alt="[[@Koldewyn2010-ap]](https://dx.doi.org/10.1093/brain/awp272)" width="500px" />
+
+<p class="caption">
+
+<a href='https://dx.doi.org/10.1093/brain/awp272' title=''><span class="cite">(Koldewyn, Whitney, &amp; Rivera, 2010)</span></a>
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2>Atypical development: Amblyopia</h2></hgroup><article  id="atypical-development-amblyopia">
+
 <ul>
 <li><strong>Amblyopia</strong>: Reduced visual acuity in one or both eyes relative to the other without an obvious defect or change in the eye</li>
 <li><strong>Strabismus</strong>: Misalignment of the eyes</li>
 <li><strong>Anisometropia</strong>: Difference in refractive power</li>
 </ul>
-</section><section class="slide level2">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="figure" style="text-align: center">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/StrabismusVL2.jpg" alt="Wikipedia" width="900px" />
+
+<p class="caption">
+
+Wikipedia
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="figure" style="text-align: center">
+<img src="https://www.jneurosci.org/content/jneuro/36/45/11384/F7.large.jpg" alt="[[@Kiorpes2016-ut]](https://dx.doi.org/10.1523/JNEUROSCI.2937-16.2016)" width="900px" />
+
+<p class="caption">
+
+<a href='https://dx.doi.org/10.1523/JNEUROSCI.2937-16.2016' title=''><span class="cite">(Kiorpes, 2016)</span></a>
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2>Atypical development: Prematurity</h2></hgroup><article  id="atypical-development-prematurity">
+
+</article></slide><slide class=""><hgroup><h2>Some (binocular functions) are experience-dependent</h2></hgroup><article  id="some-binocular-functions-are-experience-dependent">
+
+<div class="figure" style="text-align: center">
+<img src="https://www.pnas.org/content/109/27/11049/F2.medium.gif" alt="[[@Jando2012-zt]](https://dx.doi.org/10.1073/pnas.1203096109)" width="900px" />
+
+<p class="caption">
+
+<a href='https://dx.doi.org/10.1073/pnas.1203096109' title=''><span class="cite">(Jandó et al., 2012)</span></a>
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2>Others (pattern/contrast reversal) are not</h2></hgroup><article  id="others-patterncontrast-reversal-are-not">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <div class="centered">
-<p><img src="https://cdna.allaboutvision.com/i/strabismus-199x300.jpg" height=500px></p>
-</div>
-</section><section class="slide level2">
+
+<div class="figure" style="text-align: center">
+<img src="https://www.pnas.org/content/109/27/11049/F3.medium.gif" alt="[[@Jando2012-zt]](https://dx.doi.org/10.1073/pnas.1203096109)" width="900px" />
+
+<p class="caption">
+
+<a href='https://dx.doi.org/10.1073/pnas.1203096109' title=''><span class="cite">(Jandó et al., 2012)</span></a>
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2>Atypical development: Cataract</h2></hgroup><article  class="smaller" id="atypical-development-cataract">
+
+<div class="figure" style="text-align: center">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Cataracts_due_to_Congenital_Rubella_Syndrome_%28CRS%29_PHIL_4284_lores.jpg/600px-Cataracts_due_to_Congenital_Rubella_Syndrome_%28CRS%29_PHIL_4284_lores.jpg" alt="https://en.wikipedia.org/wiki/Congenital_cataract"  />
+
+<p class="caption">
+
+<a href='https://en.wikipedia.org/wiki/Congenital_cataract' title=''>https://en.wikipedia.org/wiki/Congenital_cataract</a>
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="figure" style="text-align: center">
+<img src="https://d2ufo47lrtsv5s.cloudfront.net/content/sci/286/5437/108/F3.large.jpg?width=800&height=600&carousel=1" alt="[[@Maurer1999-yz]](https://www.ncbi.nlm.nih.gov/pubmed/10506555)" height="500px" />
+
+<p class="caption">
+
+<a href='https://www.ncbi.nlm.nih.gov/pubmed/10506555' title=''><span class="cite">(Maurer, Lewis, Brent, &amp; Levin, 1999)</span></a>
+
+</p></div>
+
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>The big picture</h2></hgroup><article  id="the-big-picture">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <div class="centered">
-<p><img src="https://www.jneurosci.org/content/jneuro/36/45/11384/F7.large.jpg" width="900px" /></p>
-<!-- <img src="https://www.jneurosci.org/content/jneuro/36/45/11384/F7.large.jpg" width=800px> -->
-<p><a href="https://dx.doi.org/10.1523/JNEUROSCI.2937-16.2016"><span class="citation" data-cites="Kiorpes2016-ut">(Kiorpes, 2016)</span></a></p>
-</div>
-</section><section id="atypical-development-prematurity" class="slide level2">
-<h2>Atypical development: Prematurity</h2>
-</section><section id="some-binocular-functions-are-experience-dependent" class="slide level2">
-<h2>Some (binocular functions) are experience-dependent</h2>
-<div class="centered">
-<p><img data-src="https://www.pnas.org/content/109/27/11049/F2.medium.gif" /></p>
-<!-- <img src="https://www.pnas.org/content/109/27/11049/F2.medium.gif"> -->
-<p><a href="https://dx.doi.org/10.1073/pnas.1203096109"><span class="citation" data-cites="Jando2012-zt">(Jandó et al., 2012)</span></a></p>
-</div>
-</section><section id="others-patterncontrast-reversal-are-not" class="slide level2">
-<h2>Others (pattern/contrast reversal) are not</h2>
-</section><section class="slide level2">
+<p><img src="https://www.perkinselearning.org/sites/elearning.perkinsdev1.org/files/u2583/rectangular%20cards.jpg"></p></div>
 
-<div class="centered">
-<p><img data-src="https://www.pnas.org/content/109/27/11049/F3.medium.gif" /></p>
-<!-- <img src="https://www.pnas.org/content/109/27/11049/F3.medium.gif"/> -->
-<p></br> <a href="https://dx.doi.org/10.1073/pnas.1203096109"><span class="citation" data-cites="Jando2012-zt">(Jandó et al., 2012)</span></a></p>
-</div>
-</section><section id="atypical-development-cataract" class="slide level2 smaller">
-<h2>Atypical development: Cataract</h2>
-<div class="centered">
-<p><img src="https://cdna.allaboutvision.com/i/conditions-2016/congenital-cataract-baby-330x220.jpg" height = 450px></p>
-</div>
-</section><section class="slide level2">
-
-<div class="centered">
-<p><img src="https://d2ufo47lrtsv5s.cloudfront.net/content/sci/286/5437/108/F3.large.jpg?width=800&height=600&carousel=1" height="550px" /></p>
-<!-- <img src="https://d2ufo47lrtsv5s.cloudfront.net/content/sci/286/5437/108/F3.large.jpg?width=800&height=600&carousel=1" height=550px> -->
-<p><a href="https://www.ncbi.nlm.nih.gov/pubmed/10506555"><span class="citation" data-cites="Maurer1999-yz">(Maurer, Lewis, Brent, &amp; Levin, 1999)</span></a></p>
-</div>
-</section></section>
-<section><section id="the-big-picture" class="title-slide slide level1"><h1>The big picture</h1></section><section class="slide level2">
-
-<div class="centered">
-<p><img src="https://www.perkinselearning.org/sites/elearning.perkinsdev1.org/files/u2583/rectangular%20cards.jpg"></p>
-</div>
-</section><section class="slide level2">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <blockquote>
-<p>“For me, one of the major attractions of visual science is the <strong>promise it holds for empirical attacks on the mind-body problem</strong>—that is, for working out meaningful ways to explain psychophysically defined visual functions on the basis of properties of the neural substrate.”</p>
+<p>&ldquo;For me, one of the major attractions of visual science is the <strong>promise it holds for empirical attacks on the mind-body problem</strong>—that is, for working out meaningful ways to explain psychophysically defined visual functions on the basis of properties of the neural substrate.&rdquo;</p>
 </blockquote>
+
 <p>Davida Teller</p>
-</section><section class="slide level2">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <blockquote>
-<p>“…A critical locus or critical computation for a particular perceptual function can be defined as an anatomic or computational stage at which information concerning that function is lost or importantly reorganized…”</p>
+<p>&ldquo;…A critical locus or critical computation for a particular perceptual function can be defined as an anatomic or computational stage at which information concerning that function is lost or importantly reorganized…&rdquo;</p>
 </blockquote>
+
 <p>Davida Teller</p>
-</section><section class="slide level2">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <blockquote>
-<p>“or more poetically, as a stage or computation that leaves its mark on that perceptual capacity.”</p>
+<p>&ldquo;or more poetically, as a stage or computation that leaves its mark on that perceptual capacity.&rdquo;</p>
 </blockquote>
+
 <p>Davida Teller</p>
-</section><section class="slide level2">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <blockquote>
-<p>“Part of the appeal of visual development is its potential for extending this promise. <strong>Visual functions mature because the visual substrate matures</strong>, and the causes of functional maturation undoubtedly lie in neural maturation.”</p>
+<p>&ldquo;Part of the appeal of visual development is its potential for extending this promise. <strong>Visual functions mature because the visual substrate matures</strong>, and the causes of functional maturation undoubtedly lie in neural maturation.&rdquo;</p>
 </blockquote>
+
 <p>Davida Teller</p>
-</section><section class="slide level2">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <blockquote>
-<p>“But the length of the big toe matures too, and we do not see it as causal in relation to the development of grating acuity. The puzzle is, <strong>which of the many immaturities of the visual substrate provide the critical immaturities</strong> that limit a particular visual capacity at a particular age?”</p>
+<p>&ldquo;But the length of the big toe matures too, and we do not see it as causal in relation to the development of grating acuity. The puzzle is, <strong>which of the many immaturities of the visual substrate provide the critical immaturities</strong> that limit a particular visual capacity at a particular age?&rdquo;</p>
 </blockquote>
+
 <p>Davida Teller</p>
-</section><section id="other-things-change-too" class="slide level2">
-<h2>Other things change, too…</h2>
-</section><section id="simulating-effects-of-posture-change-on-motion" class="slide level2">
-<h2>Simulating effects of posture change on motion</h2>
-<table>
-<thead>
+
+</article></slide><slide class=""><hgroup><h2>Other things change, too…</h2></hgroup><article  id="other-things-change-too">
+
+</article></slide><slide class=""><hgroup><h2>Simulating effects of posture change on motion</h2></hgroup><article  id="simulating-effects-of-posture-change-on-motion">
+
+<table class = 'rmdtable'>
 <tr class="header">
-<th>Parameter</th>
-<th>Crawling Infant</th>
-<th>Walking Infant</th>
+<th align="left">Parameter</th>
+<th align="left">Crawling Infant</th>
+<th align="left">Walking Infant</th>
 </tr>
-</thead>
-<tbody>
 <tr class="odd">
-<td>Eye height</td>
-<td>0.30 m</td>
-<td>0.60 m</td>
+<td align="left">Eye height</td>
+<td align="left">0.30 m</td>
+<td align="left">0.60 m</td>
 </tr>
 <tr class="even">
-<td>Locomotor speed</td>
-<td>0.33 m/s</td>
-<td>0.61 m/s</td>
+<td align="left">Locomotor speed</td>
+<td align="left">0.33 m/s</td>
+<td align="left">0.61 m/s</td>
 </tr>
 <tr class="odd">
-<td>Head tilt</td>
-<td>20 deg</td>
-<td>9 deg</td>
+<td align="left">Head tilt</td>
+<td align="left">20 deg</td>
+<td align="left">9 deg</td>
 </tr>
-</tbody>
 </table>
-<div class="centered">
-<p></br> <img src="https://raw.githubusercontent.com/gilmore-lab/temple-2017-02-27/master/img/kretch-etal.png" width=600px/> </br> <small> <a href="https://dx.doi.org/10.1111/cdev.12206">Kretch et al., 2014</a> </small></p>
-</div>
-</section><section id="simulating-flow-fields" class="slide level2 flexbox vcenter smaller">
-<h2>Simulating Flow Fields</h2>
-<div class="centered">
-<p><img src='https://raw.githubusercontent.com/gilmore-lab/temple-2017-02-27/master/img/simulation-flow-patterns.png' width=800px/> </br> <small> <a href="https://doi.org/10.1109/DEVLRN.2015.7345450">Gilmore et al, 2015</a> </small></p>
-</div>
-</section><section id="flow-direction-distributions-by-geometry-posture" class="slide level2 smaller">
-<h2>Flow Direction Distributions by Geometry &amp; Posture</h2>
-<div class="centered">
-<p><img src='https://raw.githubusercontent.com/gilmore-lab/temple-2017-02-27/master/img/simulation-flow-direction-hist.png' width=600px/> </br> <small> <a href="https://doi.org/10.1109/DEVLRN.2015.7345450">Gilmore et al, 2015</a> </small></p>
-</div>
-</section><section id="simulated-flow-speeds-ms" class="slide level2 flexbox vcenter">
-<h2>Simulated Flow Speeds (m/s)</h2>
-<div class="centered">
-<table>
-<thead>
-<tr class="header">
-<th>Type of Locomotion</th>
-<th>Ground Plane</th>
-<th>Room</th>
-<th>Side Wall</th>
-<th>Two Walls</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Crawling</td>
-<td>14.41</td>
-<td>14.42</td>
-<td>14.43</td>
-<td>14.62</td>
-</tr>
-<tr class="even">
-<td>Walking</td>
-<td>9.38</td>
-<td>8.56</td>
-<td>7.39</td>
-<td>9.18</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section><section id="but-whats-the-input-the-real-input" class="slide level2">
-<h2>But, what’s the input? The <em>real</em> input?</h2>
-</section><section class="slide level2">
 
 <div class="centered">
+<p></br> <img src="https://raw.githubusercontent.com/gilmore-lab/temple-2017-02-27/master/img/kretch-etal.png" width=600px/> </br> <small> <a href='https://dx.doi.org/10.1111/cdev.12206' title=''>Kretch et al., 2014</a> </small></p></div>
+
+</article></slide><slide class=""><hgroup><h2>Simulating Flow Fields</h2></hgroup><article  class="flexbox vcenter smaller" id="simulating-flow-fields">
+
+<div class="centered">
+<p><img src='https://raw.githubusercontent.com/gilmore-lab/temple-2017-02-27/master/img/simulation-flow-patterns.png' width=800px/> </br> <small> <a href='https://doi.org/10.1109/DEVLRN.2015.7345450' title=''>Gilmore et al, 2015</a> </small></p></div>
+
+</article></slide><slide class=""><hgroup><h2>Flow Direction Distributions by Geometry &amp; Posture</h2></hgroup><article  class="smaller" id="flow-direction-distributions-by-geometry-posture">
+
+<div class="centered">
+<p><img src='https://raw.githubusercontent.com/gilmore-lab/temple-2017-02-27/master/img/simulation-flow-direction-hist.png' width=600px/> </br> <small> <a href='https://doi.org/10.1109/DEVLRN.2015.7345450' title=''>Gilmore et al, 2015</a> </small></p></div>
+
+</article></slide><slide class=""><hgroup><h2>Simulated Flow Speeds (m/s)</h2></hgroup><article  class="flexbox vcenter" id="simulated-flow-speeds-ms">
+
+<div class="centered">
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left">Type of Locomotion</th>
+<th align="left">Ground Plane</th>
+<th align="left">Room</th>
+<th align="left">Side Wall</th>
+<th align="left">Two Walls</th>
+</tr>
+<tr class="odd">
+<td align="left">Crawling</td>
+<td align="left">14.41</td>
+<td align="left">14.42</td>
+<td align="left">14.43</td>
+<td align="left">14.62</td>
+</tr>
+<tr class="even">
+<td align="left">Walking</td>
+<td align="left">9.38</td>
+<td align="left">8.56</td>
+<td align="left">7.39</td>
+<td align="left">9.18</td>
+</tr>
+</table></div>
+
+</article></slide><slide class=""><hgroup><h2>But, what’s the input? The <em>real</em> input?</h2></hgroup><article  id="but-whats-the-input-the-real-input">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="centered">
+
 <video width="750" height="450" controls>
+
 <source src="https://nyu.databrary.org/slot/7740/0,24634/asset/16751/download?inline=true" type="video/mp4">
-Your browser does not support the video tag. </video> </br> <small> (<a href="https://doi.org/10.17910/B7.116">Gilmore et al., 2015</a>) </small>
+
+Your browser does not support the video tag. </video> </br> <small> (<a href='https://doi.org/10.17910/B7.116' title=''>Gilmore et al., 2015</a>) </small>
+
 </div>
-<aside class="notes">
-<p>What if I had first-person, observer’s-eye views of what infants saw…</p>
-</aside>
-</section><section class="slide level2">
+
+<aside class='note'><section><p>What if I had first-person, observer’s-eye views of what infants saw…</p></section></aside>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <div class="centered">
+
 <video data-autoplay width="750" height="450" controls>
+
 <source src="https://nyu.databrary.org/slot/7740/0,24200/asset/16753/download?inline=true" type="video/mp4">
-Your browser does not support the video tag. </video> </br> <small>(<a href="https://doi.org/10.17910/B7.116">Gilmore et al., 2015</a>)</small>
+
+Your browser does not support the video tag. </video> </br> <small>(<a href='https://doi.org/10.17910/B7.116' title=''>Gilmore et al., 2015</a>)</small>
+
 </div>
-<aside class="notes">
-<p>And what mothers’ saw while they moved together through the very same environment?</p>
-</aside>
-</section><section class="slide level2">
+
+<aside class='note'><section><p>And what mothers’ saw while they moved together through the very same environment?</p></section></aside>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <div class="centered">
-<p><img src="https://raw.githubusercontent.com/gilmore-lab/temple-2017-02-27/master/img/mom-baby-carrier.jpg" height=350px> </br> <small> (<a href="https://doi.org/10.17910/B7.123">Adolph, 2015</a>) </small></p>
-</div>
-</section><section id="frame-by-frame-video-analysis" class="slide level2">
-<h2>Frame-by-frame video analysis</h2>
+<p><img src="https://raw.githubusercontent.com/gilmore-lab/temple-2017-02-27/master/img/mom-baby-carrier.jpg" height=350px> </br> <small> (<a href='https://doi.org/10.17910/B7.123' title=''>Adolph, 2015</a>) </small></p></div>
+
+</article></slide><slide class=""><hgroup><h2>Frame-by-frame video analysis</h2></hgroup><article  id="frame-by-frame-video-analysis">
+
 <div class="centered">
+
 <video width="640" height="480" controls>
+
 <source src="https://nyu.databrary.org/slot/11680/0,24500/asset/41871/download?inline=true" type="video/mp4">
-Your browser does not support the video tag. </video> </br> <small> (<a href="https://doi.org/10.17910/B7988V">Jayaraman et al., 2015</a>) </small>
-</div>
-<aside class="notes">
 
-</aside>
-</section><section class="slide level2">
+Your browser does not support the video tag. </video> </br> <small> (<a href='https://doi.org/10.17910/B7988V' title=''>Jayaraman et al., 2015</a>) </small>
+
+</div>
+
+<aside class='note'><section></section></aside>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <div class="centered">
+
 <video width="640" height="480" controls>
+
 <source src="https://nyu.databrary.org/slot/11680/25500,50000/asset/41873/download?inline=true" type="video/mp4">
+
 Your browser does not support the video tag. </video>
+
 </div>
-</section><section class="slide level2">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <div class="centered">
+
 <video width="640" height="480" controls>
+
 <source src="https://nyu.databrary.org/slot/11680/51000,75500/asset/41875/download?inline=true" type="video/mp4">
+
 Your browser does not support the video tag. </video>
+
 </div>
-</section><section id="findings" class="slide level2 smaller">
-<h2>Findings</h2>
+
+</article></slide><slide class=""><hgroup><h2>Findings</h2></hgroup><article  class="smaller" id="findings">
+
 <div class="centered">
 <p><img src="https://raw.githubusercontent.com/gilmore-lab/temple-2017-02-27/master/img/optic-flow-locomotion.jpg" height=500px></p>
-<p><small> (<a href="https://doi.org/10.1162/NECO_a_00645">Raudies &amp; Gilmore, 2014</a>) </small></p>
-</div>
-</section><section id="findings-1" class="slide level2">
-<h2>Findings</h2>
+
+<p><small> (<a href='https://doi.org/10.1162/NECO_a_00645' title=''>Raudies &amp; Gilmore, 2014</a>) </small></p></div>
+
+</article></slide><slide class=""><hgroup><h2>Findings</h2></hgroup><article  id="findings-1">
+
 <ul>
 <li>Infant (passengers) experience faster visual speeds than mother</li>
 <li>Controlling for speed of locomotion, environment</li>
-<li>Motion “priors” for infants ≠ mothers</li>
+<li>Motion &ldquo;priors&rdquo; for infants ≠ mothers</li>
 </ul>
-</section><section id="summing-up" class="slide level2">
-<h2>Summing up…</h2>
-</section><section class="slide level2">
 
-<div class="figure">
-<img src="img/atkinson-braddick-13-fig-10.1.jpg" alt="Atkinson &amp; Braddick 2010, Fig 10.1" width="434" />
+</article></slide><slide class=""><hgroup><h2>Summing up…</h2></hgroup><article  id="summing-up">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="figure" style="text-align: center">
+<img src="img/atkinson-braddick-13-fig-10.1.jpg" alt="Atkinson &amp; Braddick 2010, Fig 10.1" width="434" height="550px" />
+
 <p class="caption">
+
 Atkinson &amp; Braddick 2010, Fig 10.1
-</p>
-</div>
-</section><section class="slide level2">
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <ul>
 <li>Vision develops rapidly, but approaches asymptote slowly</li>
 <li>Complex interplay of brain and behavioral changes</li>
 </ul>
-</section><section class="slide level2">
 
-<div class="figure">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="figure" style="text-align: center">
 <img src="img/atkinson-braddick-13-fig-10.4.jpg" alt="Atkinson &amp; Braddick 2010, Fig 10.4" width="700px" />
-<p class="caption">
-Atkinson &amp; Braddick 2010, Fig 10.4
-</p>
-</div>
-</section></section>
-<section id="thank-you" class="title-slide slide level1"><h1>Thank you!</h1></section>
-<section><section id="materials" class="title-slide slide level1"><h1>Materials</h1></section><section class="slide level2">
 
-<p>This talk was produced on 2019-09-12 in <a href="https://rstudio.com">RStudio</a> using R Markdown and the reveal.JS framework. The code and materials used to generate the slides may be found at <a href="https://github.com/gilmore-lab/csd-vision-2019-09-04/" class="uri">https://github.com/gilmore-lab/csd-vision-2019-09-04/</a>.</p>
-</section><section class="slide level2">
+<p class="caption">
+
+Atkinson &amp; Braddick 2010, Fig 10.4
+
+</p></div>
+
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Thank you!</h2></hgroup><article  id="thank-you">
+
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Materials</h2></hgroup><article  id="materials">
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p>This talk was produced on 2021-08-30 in <a href='https://rstudio.com' title=''>RStudio</a> using R Markdown. The code and materials used to generate the slides may be found at <a href='https://github.com/gilmore-lab/csd-vision-course/' title=''>https://github.com/gilmore-lab/csd-vision-course/</a>.</p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <p>Information about the R Session that produced the code is as follows:</p>
-<pre><code>## R version 3.5.3 (2019-03-11)
-## Platform: x86_64-apple-darwin15.6.0 (64-bit)
-## Running under: macOS Mojave 10.14.6
+
+<pre >## R version 4.1.0 (2021-05-18)
+## Platform: x86_64-apple-darwin17.0 (64-bit)
+## Running under: macOS Big Sur 10.16
 ## 
 ## Matrix products: default
-## BLAS: /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
-## LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
 ## 
 ## locale:
 ## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 ## 
 ## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## [1] stats     graphics  grDevices utils     datasets 
+## [6] methods   base     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.1       revealjs_0.9     packrat_0.5.0    digest_0.6.19   
-##  [5] magrittr_1.5     evaluate_0.14    highr_0.8        stringi_1.4.3   
-##  [9] rmarkdown_1.13   tools_3.5.3      stringr_1.4.0    jpeg_0.1-8      
-## [13] xfun_0.8         yaml_2.2.0       rsconnect_0.8.13 compiler_3.5.3  
-## [17] htmltools_0.3.6  knitr_1.23</code></pre>
-</section><section class="slide level2">
+##  [1] revealjs_0.9      digest_0.6.27    
+##  [3] mime_0.11         R6_2.5.0         
+##  [5] jsonlite_1.7.2    magrittr_2.0.1   
+##  [7] evaluate_0.14     highr_0.9        
+##  [9] stringi_1.7.3     rlang_0.4.11     
+## [11] jquerylib_0.1.4   bslib_0.2.5.1    
+## [13] rmarkdown_2.9     tools_4.1.0      
+## [15] stringr_1.4.0     jpeg_0.1-9       
+## [17] xfun_0.24         yaml_2.2.1       
+## [19] compiler_4.1.0    htmltools_0.5.1.1
+## [21] knitr_1.33        sass_0.4.0</pre>
 
-<div id="refs" class="references">
-<div id="ref-Von_Hofsten2014-gy">
-<p>Hofsten, O. von, Hofsten, C. von, Sulutvedt, U., Laeng, B., Brennen, T., &amp; Magnussen, S. (2014). Simulating newborn face perception. <em>Journal of Vision</em>, <em>14</em>(13), 16. <a href="https://doi.org/10.1167/14.13.16">https://doi.org/10.1167/14.13.16</a></p>
-</div>
-<div id="ref-Jando2012-zt">
-<p>Jandó, G., Mikó-Baráth, E., Markó, K., Hollódy, K., Török, B., &amp; Kovacs, I. (2012). Early-onset binocularity in preterm infants reveals experience-dependent visual development in humans. <em>Proc. Natl. Acad. Sci. U. S. A.</em>, <em>109</em>(27), 11049–11052. <a href="https://doi.org/10.1073/pnas.1203096109">https://doi.org/10.1073/pnas.1203096109</a></p>
-</div>
-<div id="ref-Kiorpes2016-ut">
-<p>Kiorpes, L. (2016). The puzzle of visual development: Behavior and neural limits. <em>J. Neurosci.</em>, <em>36</em>(45), 11384–11393. <a href="https://doi.org/10.1523/JNEUROSCI.2937-16.2016">https://doi.org/10.1523/JNEUROSCI.2937-16.2016</a></p>
-</div>
-<div id="ref-Koldewyn2010-ap">
-<p>Koldewyn, K., Whitney, D., &amp; Rivera, S. M. (2010). The psychophysics of visual motion and global form processing in autism. <em>Brain: A Journal of Neurology</em>, <em>133</em>(Pt 2), 599–610. <a href="https://doi.org/10.1093/brain/awp272">https://doi.org/10.1093/brain/awp272</a></p>
-</div>
-<div id="ref-Maurer1999-yz">
-<p>Maurer, D., Lewis, T. L., Brent, H. P., &amp; Levin, A. V. (1999). Rapid improvement in the acuity of infants after visual input. <em>Science</em>, <em>286</em>(5437), 108–110. Retrieved from <a href="https://www.ncbi.nlm.nih.gov/pubmed/10506555">https://www.ncbi.nlm.nih.gov/pubmed/10506555</a></p>
-</div>
-<div id="ref-Mirabella2006-ro">
-<p>Mirabella, G., Kjaer, P. K., Norcia, A. M., Good, W. V., &amp; Madan, A. (2006). Visual development in very low birth weight infants. <em>Pediatr. Res.</em>, <em>60</em>(4), 435–439. <a href="https://doi.org/10.1203/01.pdr.0000238249.44088.2c">https://doi.org/10.1203/01.pdr.0000238249.44088.2c</a></p>
-</div>
-</div>
-</section></section>
-    </div>
-  </div>
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
-  <script src="libs/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
-  <script src="libs/reveal.js-3.3.0.1/js/reveal.js"></script>
+<div class="references csl-bib-body hanging-indent" line-spacing="2" id="refs">
+<div class="csl-entry" id="ref-Chan2014-il">
+<p>Chan, S. C. (2014). Plenoptic function. In K. Ikeuchi (Ed.), <em>Computer vision: A reference guide</em> (pp. 618–623). Boston, MA: Springer US. <a href='https://doi.org/10.1007/978-0-387-31439-6\_7' title=''>https://doi.org/10.1007/978-0-387-31439-6\_7</a></p></div>
 
-  <script>
+<div class="csl-entry" id="ref-Von_Hofsten2014-gy">
+<p>Hofsten, O. von, Hofsten, C. von, Sulutvedt, U., Laeng, B., Brennen, T., &amp; Magnussen, S. (2014). Simulating newborn face perception. <em>Journal of Vision</em>, <em>14</em>(13), 16. <a href='https://doi.org/10.1167/14.13.16' title=''>https://doi.org/10.1167/14.13.16</a></p></div>
 
-      // Full list of configuration options available at:
-      // https://github.com/hakimel/reveal.js#configuration
-      Reveal.initialize({
-        // Display the page number of the current slide
-        slideNumber: true,
-        // Push each slide change to the browser history
-        history: true,
-        // Vertical centering of slides
-        center: true,
-        // Enables touch navigation on devices with touch input
-        touch: true,
-        // Opens links in an iframe preview overlay
-        previewLinks: false,
-        // Transition style
-        transition: 'none', // none/fade/slide/convex/concave/zoom
-        // Transition style for full page slide backgrounds
-        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+<div class="csl-entry" id="ref-Jando2012-zt">
+<p>Jandó, G., Mikó-Baráth, E., Markó, K., Hollódy, K., Török, B., &amp; Kovacs, I. (2012). Early-onset binocularity in preterm infants reveals experience-dependent visual development in humans. <em>Proc. Natl. Acad. Sci. U. S. A.</em>, <em>109</em>(27), 11049–11052. <a href='https://doi.org/10.1073/pnas.1203096109' title=''>https://doi.org/10.1073/pnas.1203096109</a></p></div>
+
+<div class="csl-entry" id="ref-Kiorpes2016-ut">
+<p>Kiorpes, L. (2016). The puzzle of visual development: Behavior and neural limits. <em>J. Neurosci.</em>, <em>36</em>(45), 11384–11393. <a href='https://doi.org/10.1523/JNEUROSCI.2937-16.2016' title=''>https://doi.org/10.1523/JNEUROSCI.2937-16.2016</a></p></div>
+
+<div class="csl-entry" id="ref-Koldewyn2010-ap">
+<p>Koldewyn, K., Whitney, D., &amp; Rivera, S. M. (2010). The psychophysics of visual motion and global form processing in autism. <em>Brain: A Journal of Neurology</em>, <em>133</em>(Pt 2), 599–610. <a href='https://doi.org/10.1093/brain/awp272' title=''>https://doi.org/10.1093/brain/awp272</a></p></div>
+
+<div class="csl-entry" id="ref-Maurer1999-yz">
+<p>Maurer, D., Lewis, T. L., Brent, H. P., &amp; Levin, A. V. (1999). Rapid improvement in the acuity of infants after visual input. <em>Science</em>, <em>286</em>(5437), 108–110. Retrieved from <a href='https://www.ncbi.nlm.nih.gov/pubmed/10506555' title=''>https://www.ncbi.nlm.nih.gov/pubmed/10506555</a></p></div>
+
+<div class="csl-entry" id="ref-Mirabella2006-ro">
+<p>Mirabella, G., Kjaer, P. K., Norcia, A. M., Good, W. V., &amp; Madan, A. (2006). Visual development in very low birth weight infants. <em>Pediatr. Res.</em>, <em>60</em>(4), 435–439. <a href='https://doi.org/10.1203/01.pdr.0000238249.44088.2c' title=''>https://doi.org/10.1203/01.pdr.0000238249.44088.2c</a></p></div>
+
+<div class="csl-entry" id="ref-Tootell2003-oo">
+<p>Tootell, R. B. H., Tsao, D., &amp; Vanduffel, W. (2003). Neuroimaging weighs in: Humans meet macaques in <span>
+“primate”</span> visual cortex. <em>The Journal of Neuroscience: The Official Journal of the Society for Neuroscience</em>, <em>23</em>(10), 3981–3989. <a href='https://doi.org/10.1523/JNEUROSCI.23-10-03981.2003' title=''>https://doi.org/10.1523/JNEUROSCI.23-10-03981.2003</a></p></div></div></article></slide>
 
 
+  <slide class="backdrop"></slide>
 
-        // Optional reveal.js plugins
-        dependencies: [
-          { src: 'libs/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
-          { src: 'libs/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
-        ]
-      });
-    </script>
-  <!-- dynamically load mathjax for compatibility with self-contained -->
-  <script>
-    (function () {
-      var script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-      document.getElementsByTagName("head")[0].appendChild(script);
-    })();
-  </script>
+</slides>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!-- map slide visiblity events into shiny -->
 <script>
   (function() {
     if (window.jQuery) {
-      Reveal.addEventListener( 'slidechanged', function(event) {  
-        window.jQuery(event.previousSlide).trigger('hidden');
-        window.jQuery(event.currentSlide).trigger('shown');
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
       });
     }
   })();
 </script>
 
-
-  </body>
+</body>
 </html>
