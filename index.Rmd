@@ -6,6 +6,12 @@ bibliography: refs.bib
 csl: apa.csl
 css: css/ioslides.css
 output:
+  ioslides_presentation:
+    widescreen: true
+    self_contained: false
+    lib_dir: libs
+    incremental: false
+    transition: default
   revealjs::revealjs_presentation:
     self_contained: false
     lib_dir: libs
@@ -18,12 +24,6 @@ output:
       previewLinks: false
       center: true
       touch: true
-  ioslides_presentation:
-    widescreen: true
-    self_contained: false
-    lib_dir: libs
-    incremental: false
-    transition: default
 ---
 
 ```{r setup, include=FALSE}
@@ -202,6 +202,8 @@ knitr::include_graphics("https://www.optilase.com/wp-content/uploads/2014/12/cam
 
 <!-- Kestrel showing image stabilization -->
 <iframe width="560" height="315" src="https://www.youtube.com/embed/JGArTWOJtXs?start=7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<https://www.youtube.com/embed/JGArTWOJtXs>
 
 ## The retina...
 
@@ -467,7 +469,7 @@ knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/0/
 ---
 
 ```{r, out.height="500px", fig.cap="[[@Maurer1999-yz]](https://www.ncbi.nlm.nih.gov/pubmed/10506555)"}
-knitr::include_graphics("https://d2ufo47lrtsv5s.cloudfront.net/content/sci/286/5437/108/F3.large.jpg?width=800&height=600&carousel=1")
+knitr::include_graphics("https://www.science.org/cms/10.1126/science.286.5437.108/asset/1dbf5bb9-fb2f-49e1-8e24-64879e0d05ec/assets/graphic/se3797848003.jpeg")
 ```
 
 # The big picture
@@ -563,7 +565,7 @@ Davida Teller
 
 <div class="centered">
 <video width="750" height="450" controls>
-  <source src="https://nyu.databrary.org/slot/7740/0,24634/asset/16751/download?inline=true" type="video/mp4">
+  <source src="https://nyu.databrary.org/slot/7739/0,26634/asset/16747/download?inline=true" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 </br>
@@ -580,7 +582,7 @@ What if I had first-person, observer's-eye views of what infants saw...
 
 <div class="centered">
 <video data-autoplay width="750" height="450" controls>
-  <source src="https://nyu.databrary.org/slot/7740/0,24200/asset/16753/download?inline=true" type="video/mp4">
+  <source src="https://nyu.databrary.org/slot/7739/0,26134/asset/16749/download?inline=true" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 </br>
