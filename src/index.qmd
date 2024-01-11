@@ -1,0 +1,648 @@
+---
+title: "Vision"
+subtitle: "How it works, how it develops, & why you should care"
+author: "Rick O. Gilmore"
+date: "`r Sys.time()`"
+output-dir: "../docs"
+css: include/css/styles.css
+csl: include/bib/apa.csl
+bibliography: include/bib/refs.bib
+format: 
+  revealjs:
+    logo: https://images.ctfassets.net/u4vv676b8z52/1BpJxSJbvKRJIwRrykIXsH/5aab6a776cc4334fd2ec9428b4304389/vision-678x446.gif?fm=jpg&q=80
+    footer: "Vision: How it works, how it develops, & why you should care"
+    citations-hover: true
+    footnotes-hover: true
+---
+
+# Preliminaries
+
+## About me
+
+- B.A., Cognitive Science, Brown University
+- M.S. & Ph.D., Psychology (Cognitive Neuroscience), Carnegie Mellon University
+- Human brain development, perception & action, computational modeling, machine vision, big data, open science
+
+---
+
+- Founding Director of Human Imaging, Penn State Social, Life & Engineering Sciences Imaging Center (SLEIC)
+- Co-Founder/Co-Director of [Databrary.org](https://databrary.org) data library
+- [gilmore-lab.github.io](https://gilmore-lab.github.io)
+
+---
+
+- banjo player, actor, cyclist, backpacker, poet, ham (W3TM)
+- native Coloradoan, husband, dad, grandpa
+
+## Agenda
+
+- What's vision for?
+- Properties of light
+- The visual eye and brain
+- Measuring the development of visual perception
+
+# What's vision for?
+
+## Behavioral priorities
+
+- Secure sustenance (eat & drink)
+- Avoid harm
+- Reproduce
+
+## Behavioral primitives
+
+- Locomotion
+- Object interaction/manipulation
+- Communication
+
+## Vision answers
+
+- Where things are; where they're moving; where/how I'm moving
+- Who/What's out there
+- How should I respond
+
+## Vision informs observers about...
+
+- Geometry and motion of objects and surfaces
+- Surface properties (color, texture, rigidity)
+- Object properties (animate/inanimate; familiar/un-; person/animal...)
+
+# Properties of light
+
+## Physics of sensation
+
+| Informal name | Source                            |
+|---------------|-----------------------------------|
+| Vision        | Electromagnetic radiation               |
+| Audition      | Mechanical vibration in air/water       |
+| Touch         | Mechanical vibration of skin on surface |
+| Vestibular    | Rotation & linear acceleration of head  |
+| Olfaction     | Chemical patterns in air/water          |
+| Gustation     | Chemical patterns in mouth              |
+
+---
+
+| Informal name | Source                            |
+|---------------|-----------------------------------|
+| Electroception | Electromagnetic radiation              |
+| Magnetoreception | Electromagnetic radiation patterns   |
+| Kinesthesia      | Position, velocity, acceleration of limbs, body |
+
+## Plenoptic function
+
+![@Edward_H_Adelson1991-ic](include/img/plenoptic-function-adelson-1991.jpg)
+
+---
+
+![[@Chan2014-il]](https://media.springernature.com/original/springer-static/image/prt%3A978-0-387-31439-6%2F15/MediaObjects/978-0-387-31439-6_15_Part_Fig1-7_HTML.gif)
+
+## Light
+
+- Electromagnetic (EM) radiation
+- Wavelength (1/frequency)
+- Intensity
+
+---
+
+![EM spectrum from Wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/EM_Spectrum_Properties_edit.svg/1200px-EM_Spectrum_Properties_edit.svg.png)
+
+---
+
+### Different surfaces/geometries -> different reflectance patterns
+
+![Source: https://www.cns.nyu.edu/~david/courses/perception/lecturenotes/color/color-slides/Slide14.jpg](https://www.cns.nyu.edu/~david/courses/perception/lecturenotes/color/color-slides/Slide14.jpg)
+
+---
+
+### Perceived color differences correspond to different patterns of light reflection.
+
+![@Randeberg2005-xn](https://www.researchgate.net/profile/Lise-Lyngsnes-Randeberg/publication/265397843/figure/fig8/AS:667691706773516@1536201516532/Reflectance-spectra-from-different-skin-types-measured-using-the-Ocean-Optics-SD-2000.png)
+
+---
+
+### Some materials refract (bend) light
+
+![](https://www.sciencelearn.org.nz/system/images/images/000/000/050/embed/Converging-lens20150805-30610-9sjoqh.jpg?1447040428)
+
+## Light
+
+- Provides fast (2.99 million m/s; 186 million mi/hr) information about surfaces at a distance
+- vs. sound (340 m/s; 767 mi/hr)
+- vs. chemical signals (min/mi)
+
+## Projects images 
+
+### ...that relate to object shape/orientation/geometry
+
+![Source: https://thebrain.mcgill.ca](https://thebrain.mcgill.ca/flash/a/a_02/a_02_p/a_02_p_vis/a_02_p_vis_1p.jpg)
+
+---
+
+![Source: https://thebrain.mcgill.ca](https://thebrain.mcgill.ca/flash/a/a_02/a_02_p/a_02_p_vis/a_02_p_vis_1q.jpg)
+
+---
+
+### and even look backward in time...
+
+![@noauthor_undated-vq](https://stsci-opo.org/STScI-01G7DCYVZ899DGSY684E801B2Y.png)
+
+# The visual eye and brain
+
+## The eye
+
+![](https://hmslade5.files.wordpress.com/2012/03/anatomy-of-the-eye.jpg)
+---
+
+### is like an auto-focus, auto-exposure camera...
+
+![](https://www.optilase.com/wp-content/uploads/2014/12/camera-lens-eye-lens.jpg)
+---
+
+### part of a self-stabilizing system...
+
+{{< video https://www.youtube.com/embed/JGArTWOJtXs?start=7 width="70%" height="70%">}}
+
+[@Bucalo2015-qm]
+
+## The retina...
+
+![](https://www.feinberg.northwestern.edu/gfx/news/retina.jpg)
+
+---
+
+### ...samples light intensity, wavelength, and spatial patterns
+
+---
+
+### via 'wavelength-tuned' photoreceptors
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/1416_Color_Sensitivity.jpg/1200px-1416_Color_Sensitivity.jpg)
+
+---
+
+![Retinal rods (green) & cones (blue)](https://i.pinimg.com/originals/9f/08/85/9f0885d4c209d5275f631ac194eb4f4b.jpg)
+
+---
+
+### arranged in mosaics
+
+![Normal color vision vs. protanopic (color blind) vision; Source: https://en.wikipedia.org/wiki/Retinal_mosaic](https://upload.wikimedia.org/wikipedia/commons/a/a6/ConeMosaics.jpg)
+
+---
+
+### with different concentrations in different parts of the retina
+
+![Wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Human_photoreceptor_distribution.svg/1200px-Human_photoreceptor_distribution.svg.png)
+
+## Photoreceptor information processing
+
+- Separate channels for short, medium, long wavelengths (cones): chromatic
+- Black/gray/white or overall illumination (rods): achromatic
+- Point by point, topographic image
+- Non-uniform resolution (center >> periphery)
+- Focused by cornea (passive) + lens (active), except...
+
+---
+
+<!-- Myopia -->
+
+```{r, out.width="700px"}
+knitr::include_graphics("https://ecpbuilder.com/wp-content/uploads/sites/530/2015/10/myopia.jpg")
+```
+
+## The visual brain
+
+
+```{r, fig.cap="(Logothetis, N., November 1999. Vision: A window on consciousness. Scientific American", out.height="550px"}
+knitr::include_graphics("https://images.squarespace-cdn.com/content/v1/571fba899f7266a7171030cf/1462222122503-RFJMLWD4XWA4EJT4K0FO/image-asset.jpeg?format=1500w")
+```
+
+## Primary (feedforward) pathway
+
+- Retina ->
+- Thalamus ->
+- Primary visual cortex (V1) in occipital lobe
+
+---
+
+<!-- Visual projections to thalamus -->
+
+<div class="centered">
+```{r, out.height="600px"}
+knitr::include_graphics("https://i.stack.imgur.com/Go7pv.gif")
+```
+</div>
+
+---
+
+<!-- Projection to visual cortex -->
+
+<div class="centered">
+```{r, out.width="800px"}
+knitr::include_graphics("https://cdn.theconversation.com/files/139134/width754/image-20160926-13523-17pujyt.png")
+```
+</div>
+
+## Retinotopic map
+
+```{r, fig.cap="https://en.wikipedia.org/wiki/Retinotopy"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Retinotopic_English.jpg/700px-Retinotopic_English.jpg")
+```
+
+## Visual processing dominates the primate brain
+
+---
+
+```{r, out.height="500px", fig.cap="[[@Tootell2003-oo]](https://www.ncbi.nlm.nih.gov/pubmed/12764082)"}
+knitr::include_graphics("https://www.jneurosci.org/content/jneuro/23/10/3981/F1.large.jpg")
+```
+
+# Measuring visual function and its development
+
+## Psychophysical functions
+
+<div class="centered">
+```{r, out.height="500px"}
+knitr::include_graphics("https://www.psywww.com/intropsych/ch04-senses/04stevenscurves.jpg")
+```
+
+</div>
+
+## Psychophysical methods
+
+- *Method of constants* (fixed levels)
+- *Method of adjustment* (raise/lower amplitude until detectable/indetectable)
+- *Method of limits* ("can you see me now? now?"; often use staircases)
+
+## Psychophys*iolog*ical functions
+
+```{r, out.width="700px", fig.cap="[[@Mirabella2006-ro]](http://dx.doi.org/10.1203/01.pdr.0000238249.44088.2c)"}
+knitr::include_graphics("https://media.springernature.com/full/springer-static/image/art%3A10.1203%2F01.pdr.0000238249.44088.2c/MediaObjects/41390_2006_Article_BFpr2006267_Fig1_HTML.jpg?as=webp")
+```
+
+---
+
+```{r, out.width="600px", fig.cap="[[@Mirabella2006-ro]](http://dx.doi.org/10.1203/01.pdr.0000238249.44088.2c)"}
+knitr::include_graphics("https://media.springernature.com/lw685/springer-static/image/art%3A10.1203%2F01.pdr.0000238249.44088.2c/MediaObjects/41390_2006_Article_BFpr2006267_Fig2_HTML.jpg?as=webp")
+```
+
+## Acuity (detail/pattern vision)
+
+- Grating acuity
+- Vernier
+- Symbol/letter (optotype) acuity
+
+
+## Similar rates of development across primate species
+
+---
+
+```{r, out.height = "550px", fig.cap="[[@Kiorpes2016-ut]](http://dx.doi.org/10.1523/JNEUROSCI.2937-16.2016)"}
+knitr::include_graphics("https://www.jneurosci.org/content/jneuro/36/45/11384/F2.large.jpg")
+```
+
+## Measuring visual acuity
+
+<!-- Measuring visual acuity HOTV and Lea symbols -->
+<div class="centered">
+```{r, out.height="500px"}
+knitr::include_graphics("https://s3.amazonaws.com/cdn.bernell.com/images/uploads/712_4817_thumb.jpg")
+```
+</div>
+
+## Contrast sensitivity
+
+- Light/dark ratio vs. spatial frequency (level of detail)
+
+---
+
+```{r, fig.cap="Contrast sensitivity function"}
+knitr::include_graphics("https://www.psychophysics.uk/wp-content/uploads/2019/04/typical-contrast-sensitivity-function.jpg")
+```
+
+---
+
+```{r, fig.cap="Pelli-Robson Contrast Sensitivity Chart", out.height="550px"}
+knitr::include_graphics("https://www.researchgate.net/publication/313816987/figure/fig2/AS:614249734864898@1523459957272/Pelli-Robson-contrast-sensitivity-chart-Precision-Vision-LaSalle-IL-11-The_Q640.jpg")
+```
+
+---
+
+```{r, fig.cap="[[@Von_Hofsten2014-gy]](http://dx.doi.org/10.1167/14.13.16)"}
+knitr::include_graphics("https://arvo.silverchair-cdn.com/arvo/content_public/journal/jov/933685/m_i1534-7362-14-13-16-f01.png?Expires=1633350425&Signature=CMSwqDhlJZds54KXDfPyXQAuhDLaO-WsVKUkrA99glxv6j4QcgBaOxnkAsVEQ7W5s8hX9wdF9fw0I-dLXGDEZMYc7lYTTV~lV4AR4-MPfn1JiDRHRtfIo7Vcg~fbgIc3OU5IouEz33aBVXD1S5oZPeP3bmbAcx60sMk5nZdRKd7mA6~1OhDqiSxqIr0mudzpo2snp~04XPMvuMpRWJCUo6BMl6rOyqRyTKIBI26rZN~Wxg6ljkled6sxxIIawVBjCTbrfCQ6lGL9x07ZqbcpQD6ElOPGBlsLH3sGIPyZslu3cFK4ci0EHyyxmpUDe1AMBFrQYMhjvHJr~tkUbJdhDw__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA")
+```
+
+---
+
+```{r, fig.cap="[[@Von_Hofsten2014-gy]](http://dx.doi.org/10.1167/14.13.16)", out.width="800px"}
+knitr::include_graphics("https://arvo.silverchair-cdn.com/arvo/content_public/journal/jov/933685/m_i1534-7362-14-13-16-f04.png?Expires=1633350425&Signature=TisxSffCw-925oXEn9ZLATW28JICQZCOb-7B1fKopFLdDANlui0KvNELEv5-fiIrXa7-0LwM7~rybCHpXhPcY5F4XIunTdCS9GJLCqgSOfzpyTkfgJ9WnYeF8cqr0HQ5XmM7bVaTpozBScMk0~HXHxenK1pA189j-YAOkmwRQaJQqg5~SQ8KYz0xzRIfpNts-CXql3SnTC41eg4FMdAVVx4LYcE4GKkpFHFBFT~H~QgFf3pKtRWgpVPUWXEV99T3vRUph3Ls~5zHjNvHvzLYDN1ho2EdCnpwmhHY4XSbeaJk8JeSoP-ToTmcZ-o5VhNepehJ7FJKVrCghOE9R6inVg__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA")
+```
+
+## Similar rates of development across primate species
+
+---
+
+<div class="centered">
+```{r, out.height="500px", fig.cap="[[@Kiorpes2016-ut]](http://dx.doi.org/10.1523/JNEUROSCI.2937-16.2016)"}
+knitr::include_graphics("https://www.jneurosci.org/content/jneuro/36/45/11384/F3.large.jpg")
+```
+
+## Effects of poor contrast sensitivity on newborn vision
+
+---
+
+<div class="centered">
+```{r, out.width="900px", fig.cap="[[@Kiorpes2016-ut]](http://dx.doi.org/10.1523/JNEUROSCI.2937-16.2016)"}
+knitr::include_graphics("https://www.jneurosci.org/content/jneuro/36/45/11384/F4.large.jpg")
+```
+
+## Motion coherence (Signal vs. noise)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2DdlcdFeO9I" frameborder="0" allowfullscreen></iframe>
+
+## Rate of development varies across visual functions
+
+- Some (e.g., motion sensitivity) not adult-like until early teens
+
+---
+
+```{r, fig.cap="[[@Kiorpes2016-ut]](http://dx.doi.org/10.1523/JNEUROSCI.2937-16.2016)"}
+knitr::include_graphics("https://www.jneurosci.org/content/jneuro/36/45/11384/F5.large.jpg")
+```
+
+## Atypical development: Autism
+
+---
+
+```{r, fig.cap="[[@Koldewyn2010-ap]](https://dx.doi.org/10.1093/brain/awp272)", out.width="500px"}
+
+knitr::include_graphics("https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/brain/133/2/10.1093/brain/awp272/2/awp272f3.gif?Expires=1633351432&Signature=PDQgU2OJX5HOhegH07b-zYZjmnoZ8rIvmxzs6pbHB1i-O-xK6yyOmbLpepDBEKksNAoJAh04qt-zBkkdSXtQun5Ub0DlFKud5zb2znvMzbtEReNb8h48c~ZA3KYvvosntOsO9E~8sYqEJpKw6PN5YmYtcJ~YDMCPZv7VURCIn4J2KqSGJbg~kYfkM5JfTQ4KWTtoQWHYUnSG7zGAANOJhmyqA0TuAGRm9FQgaR7ek1jN9ZYerH2O99xf~u1KMWLUsed9r2c5d3UJJrmsEo4F6iBOCQDBHNRjNGLcMt5c8p~k479GEXu24cn5BCjZi-5LqXgWw04~U~nReXT6WIyoVw__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA")
+```
+
+## Atypical development: Amblyopia
+
+- **Amblyopia**: Reduced visual acuity in one or both eyes relative to the other without an obvious defect or change in the eye
+- **Strabismus**: Misalignment of the eyes
+- **Anisometropia**: Difference in refractive power
+    
+---
+
+```{r, fig.cap="Wikipedia", out.width="900px"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/6/6d/StrabismusVL2.jpg")
+```
+
+---
+
+```{r, out.width="900px", fig.cap="[[@Kiorpes2016-ut]](https://dx.doi.org/10.1523/JNEUROSCI.2937-16.2016)"}
+knitr::include_graphics("https://www.jneurosci.org/content/jneuro/36/45/11384/F7.large.jpg")
+```
+
+## Atypical development: Prematurity
+
+## Some (binocular functions) are experience-dependent
+
+```{r, fig.cap="[[@Jando2012-zt]](https://dx.doi.org/10.1073/pnas.1203096109)", out.width="900px"}
+knitr::include_graphics("https://www.pnas.org/content/109/27/11049/F2.medium.gif")
+```
+
+## Others (pattern/contrast reversal) are not
+
+---
+
+<div class="centered">
+```{r, fig.cap="[[@Jando2012-zt]](https://dx.doi.org/10.1073/pnas.1203096109)", out.width="900px"}
+knitr::include_graphics("https://www.pnas.org/content/109/27/11049/F3.medium.gif")
+```
+
+## Atypical development: Cataract {.smaller}
+
+```{r, fig.cap="https://en.wikipedia.org/wiki/Congenital_cataract"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Cataracts_due_to_Congenital_Rubella_Syndrome_%28CRS%29_PHIL_4284_lores.jpg/600px-Cataracts_due_to_Congenital_Rubella_Syndrome_%28CRS%29_PHIL_4284_lores.jpg")
+```
+
+---
+
+```{r, out.height="500px", fig.cap="[[@Maurer1999-yz]](https://www.ncbi.nlm.nih.gov/pubmed/10506555)"}
+knitr::include_graphics("https://www.science.org/cms/10.1126/science.286.5437.108/asset/1dbf5bb9-fb2f-49e1-8e24-64879e0d05ec/assets/graphic/se3797848003.jpeg")
+```
+
+# The big picture
+
+---
+
+<div class="centered">
+<img src="https://www.perkinselearning.org/sites/elearning.perkinsdev1.org/files/u2583/rectangular%20cards.jpg">
+</div>
+
+---
+
+> "For me, one of the major attractions of visual science is the **promise it holds for empirical attacks on the mind-body problem**—that is, for working out meaningful ways to explain psychophysically defined visual functions on the basis of properties of the neural substrate."
+
+Davida Teller
+
+---
+
+> "...A critical locus or critical computation for a particular perceptual function can be defined as an anatomic or computational stage at which information concerning that function is lost or importantly reorganized..."
+
+Davida Teller
+
+---
+
+> "or more poetically, as a stage or computation that leaves its mark on that perceptual capacity."
+
+Davida Teller
+
+---
+
+> "Part of the appeal of visual development is its potential for extending this promise. **Visual functions mature because the visual substrate matures**, and the causes of functional maturation undoubtedly lie in neural maturation."
+
+Davida Teller
+
+---
+
+> "But the length of the big toe matures too, and we do not see it as causal in relation to the development of grating acuity. The puzzle is, **which of the many immaturities of the visual substrate provide the critical immaturities** that limit a particular visual capacity at a particular age?"
+
+Davida Teller
+
+## Other things change, too...
+
+## Simulating effects of posture change on motion
+
+| Parameter | Crawling Infant | Walking Infant |
+|-----------|-----------------|----------------|
+| Eye height| 0.30 m          | 0.60 m         |
+| Locomotor speed | 0.33 m/s  | 0.61 m/s       |
+| Head tilt | 20 deg          | 9 deg          |
+
+<div class="centered">
+</br>
+<img src="https://raw.githubusercontent.com/gilmore-lab/temple-2017-02-27/master/img/kretch-etal.png" width=600px/>
+</br>
+<small>
+[Kretch et al., 2014](https://dx.doi.org/10.1111/cdev.12206)
+</small>
+</div>
+
+## Simulating Flow Fields {.flexbox .vcenter .smaller}
+
+<div class="centered">
+<img src='https://raw.githubusercontent.com/gilmore-lab/temple-2017-02-27/master/img/simulation-flow-patterns.png' width=800px/>
+</br>
+<small>
+[Gilmore et al, 2015](https://doi.org/10.1109/DEVLRN.2015.7345450)
+</small>
+</div>
+
+## Flow Direction Distributions by Geometry & Posture {.smaller}
+
+<div class="centered">
+<img src='https://raw.githubusercontent.com/gilmore-lab/temple-2017-02-27/master/img/simulation-flow-direction-hist.png' width=600px/>
+</br>
+<small>
+[Gilmore et al, 2015](https://doi.org/10.1109/DEVLRN.2015.7345450)
+</small>
+</div>
+
+## Simulated Flow Speeds (m/s) {.flexbox .vcenter}
+
+<div class="centered">
+| Type of Locomotion | Ground Plane | Room | Side Wall | Two Walls |
+|--------------------|--------------|------|-----------|-----------|
+| Crawling           | 14.41        | 14.42| 14.43     |14.62      |
+| Walking            | 9.38         | 8.56 | 7.39      |9.18       |
+
+</div>
+
+## But, what's the input? The *real* input?
+
+---
+
+<div class="centered">
+<video width="750" height="450" controls>
+  <source src="https://nyu.databrary.org/slot/7739/0,26634/asset/16747/download?inline=true" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+</br>
+<small>
+([Gilmore et al., 2015](https://doi.org/10.17910/B7.116))
+</small>
+</div>
+
+<div class="notes">
+What if I had first-person, observer's-eye views of what infants saw...
+</div>
+
+---
+
+<div class="centered">
+<video data-autoplay width="750" height="450" controls>
+  <source src="https://nyu.databrary.org/slot/7739/0,26134/asset/16749/download?inline=true" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+</br>
+<small>([Gilmore et al., 2015](https://doi.org/10.17910/B7.116))</small>
+</div>
+
+<div class="notes">
+And what mothers' saw while they moved together through the very same environment?
+</div>
+
+---
+
+<div class="centered">
+<img src="https://raw.githubusercontent.com/gilmore-lab/temple-2017-02-27/master/img/mom-baby-carrier.jpg" height=350px>
+</br>
+<small>
+([Adolph, 2015](https://doi.org/10.17910/B7.123))
+</small>
+</div>
+
+## Frame-by-frame video analysis
+
+<div class="centered"> 
+<video width="640" height="480" controls>
+  <source src="https://nyu.databrary.org/slot/11680/0,24500/asset/41871/download?inline=true" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+</br>
+<small>
+([Jayaraman et al., 2015](https://doi.org/10.17910/B7988V))
+</small>
+</div>
+
+<div class="notes">
+</div>
+
+---
+
+<div class="centered">
+<video width="640" height="480" controls>
+  <source src="https://nyu.databrary.org/slot/11680/25500,50000/asset/41873/download?inline=true" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+</div>
+
+---
+
+<div class="centered">
+<video width="640" height="480" controls>
+  <source src="https://nyu.databrary.org/slot/11680/51000,75500/asset/41875/download?inline=true" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+</div>
+
+## Findings {.smaller}
+
+<div class="centered">
+<img src="https://raw.githubusercontent.com/gilmore-lab/temple-2017-02-27/master/img/optic-flow-locomotion.jpg" height=500px>
+
+<small>
+([Raudies & Gilmore, 2014](https://doi.org/10.1162/NECO_a_00645))
+</small>
+</div>
+
+## Findings
+
+- Infant (passengers) experience faster visual speeds than mother
+- Controlling for speed of locomotion, environment
+- Motion "priors" for infants ≠ mothers
+
+## Summing up...
+
+---
+
+```{r, fig.cap="Atkinson & Braddick 2010, Fig 10.1", out.height="550px"}
+knitr::include_graphics("include/img/atkinson-braddick-13-fig-10.1.jpg", )
+```
+
+---
+
+- Vision develops rapidly, but approaches asymptote slowly
+- Complex interplay of brain and behavioral changes
+
+---
+
+```{r, out.width="700px", fig.cap="Atkinson & Braddick 2010, Fig 10.4"}
+knitr::include_graphics("include/img/atkinson-braddick-13-fig-10.4.jpg")
+```
+
+# Thank you!
+
+# Materials
+
+---
+
+This talk was produced on `r Sys.Date()` in [RStudio](https://rstudio.com) using R Markdown.
+The code and materials used to generate the slides may be found at <https://github.com/gilmore-lab/csd-vision-course/>.
+
+
+---
+
+Information about the R Session that produced the code is as follows:
+
+```{r session-info}
+sessionInfo()
+```
+
+---
+
