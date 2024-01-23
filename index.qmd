@@ -2,7 +2,7 @@
 title: "Vision"
 subtitle: "How it works, how it develops, & why you should care"
 author: "Rick O. Gilmore"
-css: include/css/styles.css
+#css: include/css/styles.css
 csl: include/bib/apa.csl
 bibliography: include/bib/refs.bib
 format: 
@@ -152,7 +152,7 @@ format:
 
 ## The eye
 
-![](https://hmslade5.files.wordpress.com/2012/03/anatomy-of-the-eye.jpg)
+![](https://hmslade5.files.wordpress.com/2012/03/anatomy-of-the-eye.jpg){fig-align="center"}
 ---
 
 ### is like an auto-focus, auto-exposure camera...
@@ -186,7 +186,7 @@ format:
 
 ## The retina...
 
-![](https://www.feinberg.northwestern.edu/gfx/news/retina.jpg)
+![](https://www.feinberg.northwestern.edu/gfx/news/retina.jpg){fig-align="center"}
 
 ---
 
@@ -248,7 +248,7 @@ format:
 
 ---
 
-![](https://i.stack.imgur.com/Go7pv.gif)
+![](https://i.stack.imgur.com/Go7pv.gif){fig-align="center"}
 <!-- Visual field to LGN -->
 
 ---
@@ -291,7 +291,7 @@ format:
 
 ![[@Tootell2003-oo]](https://www.jneurosci.org/content/jneuro/23/10/3981/F1.large.jpg)
 
-# Measuring visual function
+# Measuring vision
 
 ## Psychophysical functions
 
@@ -336,7 +336,7 @@ format:
 - Vernier
 - Symbol/letter (optotype) acuity
 
-## Measuring visual acuity
+---
 
 <!-- Measuring visual acuity HOTV and Lea symbols -->
 
@@ -345,7 +345,7 @@ format:
 ## Contrast sensitivity
 
 - Light/dark ratio (contast)
-- vs. spatial frequency (level of detail): high frequency -> small details
+- vs. spatial frequency (level of detail)
 - Contrast -> edges; edges -> shape/form
 - e.g., driving in fog
 
@@ -360,8 +360,6 @@ format:
 
 
 # Typical development
-
-## Acuity
 
 ---
 
@@ -421,13 +419,52 @@ format:
 
 ![[@Qian2021-eu]](https://raw.githubusercontent.com/gilmore-lab/moco-psychophysics-child-adult/master/analysis/pub_image/sex-group1.png)
 
-## Rates of development {.scrollable}
+---
 
-- Varies across visual functions
+<div class="centered"> 
+<video width="640" height="480" controls>
+  <source src="https://nyu.databrary.org/slot/9825/-/asset/11637/download?inline=true" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+</br>
+
+<p style="text-align:center;">
+[@Gilmore_undated-lc]
+</p>
+
+---
+
+### Children (4-8 year-olds)
+
+![Figure 4 from [@Gilmore2016-lq]](https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0157911.g004&type=large)
+
+---
+
+### Adults
+
+![Figure 21 from [@Gilmore2016-lq]](https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0157911.g021&type=large)
+
+## Rates of development
+
+- Vary across visual functions
 - Some (e.g., motion sensitivity) not adult-like until early teens
 
-![[@Kiorpes2016-ut Figure 5]. A comparison of developmental time courses for eight visual functions: a, Spatial resolution, as in Figure 2. b, Vernier acuity, a fine positional acuity that develops over a similar profile to spatial resolution but over a longer time course and improves on the order of a factor of ∼100. c, Peak spatial contrast sensitivity. d, Peak temporal modulation sensitivity. e, Sensitivity to global motion measured with random dot kinematograms. f, Sensitivity to global form measured with Glass patterns. g, Sensitivity to complex pattern motion measured with a plaid direction discrimination task. h, Contour integration ability measured as a figure-background discrimination. All eight visual functions illustrated here were measured using the same psychophysical task; the exact time course could be different depending on task and stimulus choice. The panels are ordered from top to bottom by age of onset of the visual ability. Smooth curves indicate Naka-Rushton functions illustrating the developmental profiles. Inverted triangles represent the age at which the function reaches one-half its asymptotic level, which is a metric for relative age at maturation. a, c, d, Data are redrawn from Stavros and Kiorpes (2008). b, Data are redrawn from Kiorpes (2015). e, f, Data are from Kiorpes et al. (2012). g, Data are from Hall-Haro and Kiorpes (2008). h, Data are from Kiorpes and Bassin (2003).](https://www.jneurosci.org/content/jneuro/36/45/11384/F5.large.jpg)
+---
 
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](include/img/kiorpes-2016-fig05-1.jpg)
+
+:::
+
+::: {.column width="50%"}
+
+![Figure 5 from [@Kiorpes2016-ut]](include/img/kiorpes-2016-fig05-2.jpg)
+:::
+
+::::
 
 # Atypical development
 
@@ -574,12 +611,11 @@ format:
   Your browser does not support the video tag.
 </video>
 </br>
-<small>
-([Jayaraman et al., 2015](https://doi.org/10.17910/B7988V))
-</small>
-</div>
 
-<div class="notes">
+<p style="text-align:center;">
+[Jayaraman et al., 2015](https://doi.org/10.17910/B7988V)
+</p>
+
 </div>
 
 ---
@@ -610,7 +646,9 @@ format:
 - Controlling for speed of locomotion, environment
 - Motion "priors" for infants ≠ mothers
 
+<p style="text-align:center;">
 [@Raudies2014-tg]
+</p>
 
 # Summing up...
 
