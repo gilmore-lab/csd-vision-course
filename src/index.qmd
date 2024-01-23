@@ -2,7 +2,6 @@
 title: "Vision"
 subtitle: "How it works, how it develops, & why you should care"
 author: "Rick O. Gilmore"
-date: "`r Sys.time()`"
 output-dir: "../docs"
 css: include/css/styles.css
 csl: include/bib/apa.csl
@@ -51,11 +50,11 @@ format:
 
 ## Behavioral primitives
 
-- Locomotion
+- Locomotion (wayfinding, steering, & balance)
 - Object interaction/manipulation
-- Communication
+- Communication (vocalizing & gesturing)
 
-## Vision answers
+## Vision answers...
 
 - Where things are; where they're moving; where/how I'm moving
 - Who/What's out there
@@ -67,9 +66,11 @@ format:
 - Surface properties (color, texture, rigidity)
 - Object properties (animate/inanimate; familiar/un-; person/animal...)
 
-# Properties of light
+# Light as information source
 
-## Physics of sensation
+---
+
+### Physics of sensation
 
 | Informal name | Source                            |
 |---------------|-----------------------------------|
@@ -96,9 +97,9 @@ format:
 
 ![[@Chan2014-il]](https://media.springernature.com/original/springer-static/image/prt%3A978-0-387-31439-6%2F15/MediaObjects/978-0-387-31439-6_15_Part_Fig1-7_HTML.gif)
 
-## Light
+## Properties of light
 
-- Electromagnetic (EM) radiation
+- Form of electromagnetic (EM) radiation
 - Wavelength (1/frequency)
 - Intensity
 
@@ -132,6 +133,8 @@ format:
 
 ## Projects images 
 
+---
+
 ### ...that relate to object shape/orientation/geometry
 
 ![Source: https://thebrain.mcgill.ca](https://thebrain.mcgill.ca/flash/a/a_02/a_02_p/a_02_p_vis/a_02_p_vis_1p.jpg)
@@ -162,7 +165,25 @@ format:
 
 {{< video https://www.youtube.com/embed/JGArTWOJtXs?start=7 width="70%" height="70%">}}
 
+<p style="text-align:center;">
 [@Bucalo2015-qm]
+</p>
+
+---
+
+::: {.callout-note}
+
+- Eye/head/body movements *point* the eyes
+- Eye/head/body movements *stabilize* the eyes
+
+:::
+
+## Image formation
+
+- Cornea (fixed refraction)
+- Iris/pupil (*modifiable* aperture)
+- Lens (*modifiable* refraction) 
+- Create projection (image) on retina
 
 ## The retina...
 
@@ -208,7 +229,7 @@ format:
 
 ---
 
-### ...except when eye misshapen for lens
+### ...when eye misshapen for cornea+lens
 
 ![](https://ecpbuilder.com/wp-content/uploads/sites/530/2015/10/myopia.jpg)
 
@@ -316,23 +337,19 @@ format:
 - Vernier
 - Symbol/letter (optotype) acuity
 
-## Rates of development
-
-### ...similar across primates
-
-![[@Kiorpes2016-ut Figure 2]](https://www.jneurosci.org/content/jneuro/36/45/11384/F2.large.jpg)
-
 ## Measuring visual acuity
 
 <!-- Measuring visual acuity HOTV and Lea symbols -->
 
-![](https://s3.amazonaws.com/cdn.bernell.com/images/uploads/712_4817_thumb.jpg)
+![](https://s3.amazonaws.com/cdn.bernell.com/images/uploads/712_4817_thumb.jpg){fig-align="center"}
 
 ## Contrast sensitivity
 
-- Light/dark ratio vs. spatial frequency (level of detail)
+- Light/dark ratio (contast)
+- vs. spatial frequency (level of detail): high frequency -> small details
 - Contrast -> edges; edges -> shape/form
-- Driving in fog
+- e.g., driving in fog
+
 
 ---
 
@@ -342,7 +359,18 @@ format:
 
 ![Pelli-Robson Contrast Sensitivity Chart](https://www.researchgate.net/publication/313816987/figure/fig2/AS:614249734864898@1523459957272/Pelli-Robson-contrast-sensitivity-chart-Precision-Vision-LaSalle-IL-11-The_Q640.jpg)
 
+
+# Typical development
+
+## Acuity
+
 ---
+
+### Acuity: Similar across primates
+
+![[@Kiorpes2016-ut Figure 2]](https://www.jneurosci.org/content/jneuro/36/45/11384/F2.large.jpg)
+
+## Contrast sensitivity
 
 ![[@Von_Hofsten2014-gy Figure 1]](https://arvo.silverchair-cdn.com/arvo/content_public/journal/jov/933685/m_i1534-7362-14-13-16-f01.png?Expires=1706037811&Signature=0bWABouajaDa2KjJtfjimxSoAwoAyF-nbwz9LQwwvuA-a2XVqSRy3znY9XMfUYQ7rCHy8LcXlnAPCNaooYBzVmj8Go2HD8XtZIMc58jGQ1mzypxiOE5zPLKSVNRh5e2Ujhp5NV0DsCae86GTHiGFWxF2ICxlZhf9RBfYJ-h4xB~yVzpVlOE9TPHo-KNXpVdtewfph7jMhaORuqGStRUuomfTlYQpA7q0n-xDaRJv-8ExA85f5WRv8a03oB7XPOo9z7CC3bOlWHONn08Z-Zq4-wGR8YybMNh8xqA7tLMPobgXBdcd69dGmEKVG8AOXz0h-Lufb6mCbrmJBAQm9xzB8Q__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA)
 
@@ -364,7 +392,7 @@ format:
 
 ::::
 
-## Rates of development 
+---
 
 ### ...similar across primate species
 
@@ -376,20 +404,31 @@ format:
 
 ![[@Kiorpes2016-ut Figure 4]](https://www.jneurosci.org/content/jneuro/36/45/11384/F4.large.jpg)
 
-## Motion coherence 
+## Motion 
 
-### Signal vs. noise
+---
+
+### Coherence: Signal vs. noise
 
 {{< video https://www.youtube.com/embed/2DdlcdFeO9I height="65%" width="65%">}}
 
-## Rate of development
+---
+
+![[@Qian2021-eu]](include/img/qian-gilmore-seisler-2021-fig02.png)
+
+---
+
+### Male/female differences
+
+![[@Qian2021-eu]](https://raw.githubusercontent.com/gilmore-lab/moco-psychophysics-child-adult/master/analysis/pub_image/sex-group1.png)
+
+## Rates of development {.scrollable}
 
 - Varies across visual functions
 - Some (e.g., motion sensitivity) not adult-like until early teens
 
----
+![[@Kiorpes2016-ut Figure 5]. A comparison of developmental time courses for eight visual functions: a, Spatial resolution, as in Figure 2. b, Vernier acuity, a fine positional acuity that develops over a similar profile to spatial resolution but over a longer time course and improves on the order of a factor of ∼100. c, Peak spatial contrast sensitivity. d, Peak temporal modulation sensitivity. e, Sensitivity to global motion measured with random dot kinematograms. f, Sensitivity to global form measured with Glass patterns. g, Sensitivity to complex pattern motion measured with a plaid direction discrimination task. h, Contour integration ability measured as a figure-background discrimination. All eight visual functions illustrated here were measured using the same psychophysical task; the exact time course could be different depending on task and stimulus choice. The panels are ordered from top to bottom by age of onset of the visual ability. Smooth curves indicate Naka-Rushton functions illustrating the developmental profiles. Inverted triangles represent the age at which the function reaches one-half its asymptotic level, which is a metric for relative age at maturation. a, c, d, Data are redrawn from Stavros and Kiorpes (2008). b, Data are redrawn from Kiorpes (2015). e, f, Data are from Kiorpes et al. (2012). g, Data are from Hall-Haro and Kiorpes (2008). h, Data are from Kiorpes and Bassin (2003).](https://www.jneurosci.org/content/jneuro/36/45/11384/F5.large.jpg)
 
-![[@Kiorpes2016-ut Figure 5]](https://www.jneurosci.org/content/jneuro/36/45/11384/F5.large.jpg)
 
 # Atypical development
 
@@ -415,7 +454,7 @@ format:
 
 - **Amblyopia**: Reduced visual acuity in one or both eyes relative to the other without an obvious defect or change in the eye
 - **Strabismus**: Misalignment of the eyes
-- **Anisometropia**: Difference in refractive power
+- **Anisometropia**: Difference (between eyes) in refractive power
     
 ---
 
@@ -423,9 +462,11 @@ format:
 
 ---
 
-![[Figure 7 from @Kiorpes2016-ut]](https://www.jneurosci.org/content/jneuro/36/45/11384/F7.large.jpg)
+![[Figure 7 from @Kiorpes2016-ut]. Characteristic amblyopic contrast sensitivity data from three macaque monkeys. Strabismic amblyopia (left) resulted from surgical alteration of the horizontal rectus muscles of one eye (data from Kiper and Kiorpes, 1994). Anisometropic amblyopia (middle) resulted from rearing with a defocusing lens over one eye (data from Kozma and Kiorpes, 2003). Deprivation amblyopia (right) resulted from rearing with one eye closed for 14 months (data from Harwerth et al., 1990). Redrawn from Kiorpes (2008).](include/img/kiorpes-2016-fig7.jpg)
 
 ## Prematurity
+
+---
 
 ### Some (binocular functions) are experience-dependent
 
