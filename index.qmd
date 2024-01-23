@@ -2,7 +2,6 @@
 title: "Vision"
 subtitle: "How it works, how it develops, & why you should care"
 author: "Rick O. Gilmore"
-output-dir: "../docs"
 css: include/css/styles.css
 csl: include/bib/apa.csl
 bibliography: include/bib/refs.bib
