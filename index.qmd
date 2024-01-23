@@ -7,10 +7,14 @@ csl: include/bib/apa.csl
 bibliography: include/bib/refs.bib
 format: 
   revealjs:
+    slide-number: true
     logo: https://images.ctfassets.net/u4vv676b8z52/1BpJxSJbvKRJIwRrykIXsH/5aab6a776cc4334fd2ec9428b4304389/vision-678x446.gif?fm=jpg&q=80
     footer: "Vision: How it works, how it develops, & why you should care"
     citations-hover: true
     footnotes-hover: true
+  pdf:
+    toc: true
+    colorlinks: true
 ---
 
 # Preliminaries
@@ -37,7 +41,8 @@ format:
 - What's vision for?
 - Properties of light
 - The visual eye and brain
-- Measuring the development of visual perception
+- Measuring vision
+- Typical and atypical development
 
 # What's vision for?
 
@@ -172,16 +177,19 @@ format:
 
 ::: {.callout-note}
 
-- Eye/head/body movements *point* the eyes
-- Eye/head/body movements *stabilize* the eyes
+- Eye + head + body movements *align and point* the eyes
+- Eye + head + body movements *stabilize* the eyes
+  - When the observer moves
+  - When objects move
 
 :::
 
 ## Image formation
 
-- Cornea (fixed refraction)
-- Iris/pupil (*modifiable* aperture)
-- Lens (*modifiable* refraction) 
+- Eye's optical components
+  - Cornea (fixed refraction)
+  - Iris/pupil (*modifiable* aperture)
+  - Lens (*modifiable* refraction) 
 - Create projection (image) on retina
 
 ## The retina...
@@ -190,7 +198,7 @@ format:
 
 ---
 
-### ...samples light intensity, wavelength, and spatial patterns
+### ...samples spatial patterns of light intensity & wavelength patterns
 
 ---
 
@@ -224,7 +232,7 @@ format:
 
 - Point by point, topographic (map-like) 2D image of 3D world
 - Non-uniform resolution (center >> periphery)
-- Focused by cornea (passive) + lens (active), except...
+- yields focused image except...
 
 ---
 
@@ -238,13 +246,13 @@ format:
 
 ![[@Logothetis1999-kr]](https://images.squarespace-cdn.com/content/v1/571fba899f7266a7171030cf/1462222122503-RFJMLWD4XWA4EJT4K0FO/image-asset.jpeg?format=1500w)
 
-## Primary pathway
+## Primary (feedforward, cortical) pathway
 
 - Retina ->
 - Thalamus ->
 - Primary visual cortex (V1) in occipital lobe
 
-- Feedforward
+- Subcortical pathways
 
 ---
 
